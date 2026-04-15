@@ -1,0 +1,55 @@
+@prefix : <https://w3id.org/ontology/dlr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://w3id.org/ontology/dlr#> .
+
+
+####################################################################################################################################################################
+# Description:
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# This example includes an interval :i1, which spans from 3.15pm of 1st January 2022 until 3.15pm of 1st January 2025. And the following (sub-)intervals:
+# - :si1, which is actually *the* instant 3.15pm of 1st January 2023 => it is inferred that i1 includes it.
+# - :si2, which spans from 3.15pm of 1st January 2022 until 3.15pm of 1st January 2025. => it is inferred that :i1 includes it and vice versa, as they are the same.
+# - :si3, which spans from 3.15pm of 1st January 2022 until 3.15pm of 1st January 2024. => it is inferred that :i1 includes it.
+# - :si4, which spans from 3.15pm of 1st January 2023 until 3.15pm of 1st January 2024. => it is inferred that :i1 includes it.
+# - :si5, which spans from 3.15pm of 1st January 2021 until 3.15pm of 1st January 2024. => no interval includes the other; however, :i1 includes :si5's end instant
+# - :si6, which spans from 3.15pm of 1st January 2021 until 3.15pm of 1st January 2026. => :i1 does not include :si6 but :si6 includes :i1.
+# - :si7, which spans from 3.15pm of 1st January 2026 until 3.15pm of 1st January 2028. => none of the two intervals includes the other one.
+# It is also inferred that some of the intervals from :si1 to :si6 includes some other intervals in this set, check the inferred file.
+# Furthermore, when an interval includes another interval, it is inferred that it also includes the latter's beginning and ending instants.
+# Finally, if an interval includes another interval (or its beginning and/or ending instants) then the two intervals intersect. Therefore, all intervals above 
+# mutually intersect, except for :i1 and :si7.
+####################################################################################################################################################################
+
+####################################################################################################################################################################
+# Input facts:
+####################################################################################################################################################################
+
+:i1 rdf:type time:Interval; time:hasBeginning :bi1; time:hasEnd :ei1.
+	:bi1 time:inXSDDateTime "2022-01-01T15:15:00Z"^^xsd:dateTime.
+	:ei1 time:inXSDDateTime "2025-01-01T15:15:00Z"^^xsd:dateTime.
+:si1 rdf:type time:Interval; time:inXSDDateTime "2023-01-01T15:15:00Z"^^xsd:dateTime.
+:si2 rdf:type time:Interval; time:hasBeginning :bsi2; time:hasEnd :esi2.
+	:bsi2 time:inXSDDateTime "2022-01-01T15:15:00Z"^^xsd:dateTime.
+	:esi2 time:inXSDDateTime "2025-01-01T15:15:00Z"^^xsd:dateTime.
+:si3 rdf:type time:Interval; time:hasBeginning :bsi3; time:hasEnd :esi3.
+	:bsi3 time:inXSDDateTime "2022-01-01T15:15:00Z"^^xsd:dateTime.
+	:esi3 time:inXSDDateTime "2024-01-01T15:15:00Z"^^xsd:dateTime.
+:si4 rdf:type time:Interval; time:hasBeginning :bsi4; time:hasEnd :esi4.
+	:bsi4 time:inXSDDateTime "2023-01-01T15:15:00Z"^^xsd:dateTime.
+	:esi4 time:inXSDDateTime "2024-01-01T15:15:00Z"^^xsd:dateTime.
+:si5 rdf:type time:Interval; time:hasBeginning :bsi5; time:hasEnd :esi5.
+	:bsi5 time:inXSDDateTime "2021-01-01T15:15:00Z"^^xsd:dateTime.
+	:esi5 time:inXSDDateTime "2024-01-01T15:15:00Z"^^xsd:dateTime.
+:si6 rdf:type time:Interval; time:hasBeginning :bsi6; time:hasEnd :esi6.
+	:bsi6 time:inXSDDateTime "2021-01-01T15:15:00Z"^^xsd:dateTime.
+	:esi6 time:inXSDDateTime "2026-01-01T15:15:00Z"^^xsd:dateTime.
+:si7 rdf:type time:Interval; time:hasBeginning :bsi7; time:hasEnd :esi7.
+	:bsi7 time:inXSDDateTime "2026-01-01T15:15:00Z"^^xsd:dateTime.
+	:esi7 time:inXSDDateTime "2028-01-01T15:15:00Z"^^xsd:dateTime.
+
+
+

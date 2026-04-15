@@ -1,0 +1,50 @@
+@prefix : <https://w3id.org/ontology/dlr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://w3id.org/ontology/dlr#> .
+
+
+####################################################################################################################################################################
+# Description:
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# This example includes a regulative norms stating that every man is obliged to pay the rent and a constitutive norm specifying what could "count as" 
+# the payment of the rent.
+# - (1) "Every man is obliged to pay his rent." 
+# - (2) "Giving the value of the rent to the landlord counts as payment of the rent."
+# Then, the following facts are asserted:
+# - (3) Bill is a man.
+# - (4) The value of Bill's rent is £500.
+# - (5) Bill's landlord is Jack.
+# Finally:
+# - (6) Bill's give £500 to Jack.
+# The two rules in (1) and (2), along with the compliance-checking rules in Deontic Logic Reified, infer that Bill has complied with his obligation to pay the rent.
+# Note that the obligation does not specify a time frame. Therefore, any point in time is considered acceptable, as explained in Example 1.
+####################################################################################################################################################################
+
+
+
+####################################################################################################################################################################
+# Input facts:
+####################################################################################################################################################################
+
+#Every man is obliged to pay his rent.
+[rdf:type :InferenceRule;
+	:has-sparql-code """CONSTRUCT{?e rdf:type :A-Obligatory,:Pay; :has-agent ?m; :has-object ?r}
+						WHERE{?m rdf:type :Man. ?r :rent-of ?m. BIND(BNode() AS ?e)
+							  NOT EXISTS{?er rdf:type :Obligatory,:Pay; :has-agent ?m; :has-object ?r}}"""^^xsd:string].
+
+#Giving the value of the rent to the landlord counts as payment of the rent.
+[rdf:type :InferenceRule;
+	:has-sparql-code """CONSTRUCT{?e rdf:type :Rexist,:Pay; :has-agent ?m; :has-object ?r}
+						WHERE{?eg rdf:type :Rexist,:Give; :has-agent ?m; :has-object ?v; :has-recipient ?l. 
+							  ?v :value-of ?r. ?r :rent-of ?m. ?l :landlord-of ?m. BIND(BNode()AS ?e)
+							  NOT EXISTS{?er rdf:type :Rexist,:Pay; :has-agent ?m; :has-object ?r}}"""^^xsd:string].
+
+#Bill is a man. His rent's value is £500 and his landlord is Jack.
+:Bill rdf:type :Man. :rb :rent-of :Bill. :500pounds :value-of :rb. :Jack :landlord-of :Bill.
+
+#Bill gives £500 to Jack.
+[rdf:type :Rexist,:Give; :has-agent :Bill; :has-object :500pounds; :has-recipient :Jack].
