@@ -1,0 +1,221 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix : <https://w3id.org/ontology/dlr#> .
+
+
+:ruleCompliance0 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?e :complies-with $this}
+						WHERE{$this rdf:type :A-Obligatory,?ET,:Active. ?e rdf:type :Rexist,?ET,:Active. ?ET rdf:type :EventualityType.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. NOT EXISTS{?e ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. ?e ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{$this :has-time ?vo. ?e :has-time ?v},true,
+									 IF(EXISTS{$this :has-time ?vo. ?e :has-time ?v. ?vo :intersects ?v},true,false)))}"""];
+sh:targetClass :A-Obligatory.
+
+:ruleCompliance1 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?e :complies-with $this}
+						WHERE{$this rdf:type :M-Obligatory,?ET,:Active. ?e rdf:type :Rexist,?ET,:Active. ?ET rdf:type :EventualityType.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. NOT EXISTS{?e ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. ?e ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{$this :has-time ?vo. ?e :has-time ?v},true,
+									 IF(EXISTS{$this :has-time ?vo. ?e :has-time ?v. ?v :includes ?vo},true,false)))}"""];
+sh:targetClass :M-Obligatory.
+
+:ruleCompliance2 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?e :conforms-to $this}
+						WHERE{$this rdf:type :A-Permitted,?ET,:Active. ?e rdf:type :Rexist,?ET,:Active.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. NOT EXISTS{?e ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. ?e ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{$this :has-time ?vo. ?e :has-time ?v},true,
+									 IF(EXISTS{$this :has-time ?vo. ?e :has-time ?v. ?vo :intersects ?v},true,false)))}"""];
+sh:targetClass :A-Permitted.
+
+:ruleCompliance3 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?e :conforms-to $this}
+						WHERE{$this rdf:type :M-Permitted,?ET,:Active. ?e rdf:type :Rexist,?ET,:Active.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. NOT EXISTS{?e ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. $this ?tr ?vo. ?e ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{$this :has-time ?vo. ?e :has-time ?v},true,
+									 IF(EXISTS{$this :has-time ?vo. ?e :has-time ?v. ?v :includes ?vo},true,false)))}"""];
+sh:targetClass :M-Permitted.
+
+:ruleCompliance4 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this :violates ?enp}
+						WHERE{<<?enp rdf:type :A-Permitted>> rdf:type :false. ?enp rdf:type ?ET,:Active. 
+							  $this rdf:type :Rexist,?ET,:Active. ?ET rdf:type :EventualityType.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?enp ?tr ?vo. NOT EXISTS{$this ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?enp ?tr ?vo. $this ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{?enp :has-time ?vo. $this :has-time ?v},true,
+									 IF(EXISTS{?enp :has-time ?vo. $this :has-time ?v. ?vo :intersects ?v},true,false)))}"""];
+sh:targetClass :Rexist.
+
+:ruleCompliance5 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this :violates ?enp}
+						WHERE{<<?enp rdf:type :M-Permitted>> rdf:type :false. ?enp rdf:type ?ET,:Active. 
+							  $this rdf:type :Rexist,?ET,:Active. ?ET rdf:type :EventualityType.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?enp ?tr ?vo. NOT EXISTS{$this ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?enp ?tr ?vo. $this ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{?enp :has-time ?vo. $this :has-time ?v},true,
+									 IF(EXISTS{?enp :has-time ?vo. $this :has-time ?v. ?v :includes ?vo},true,false)))}"""];
+sh:targetClass :Rexist.
+
+:ruleCompliance6 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this :rexists-although-not-obligatory ?eno}
+						WHERE{<<?eno rdf:type :A-Obligatory>> rdf:type :false. ?eno rdf:type ?ET,:Active. 
+							  $this rdf:type :Rexist,?ET,:Active. ?ET rdf:type :EventualityType.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?eno ?tr ?vo. NOT EXISTS{$this ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?eno ?tr ?vo. $this ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{?eno :has-time ?vo. $this :has-time ?v},true,
+									 IF(EXISTS{?eno :has-time ?vo. $this :has-time ?v. ?vo :intersects ?v},true,false)))}"""];
+sh:targetClass :Rexist.
+
+:ruleCompliance7 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this :rexists-although-not-obligatory ?eno}
+						WHERE{<<?eno rdf:type :M-Obligatory>> rdf:type :false. ?eno rdf:type ?ET,:Active. 
+							  $this rdf:type :Rexist,?ET,:Active. ?ET rdf:type :EventualityType.
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?eno ?tr ?vo. NOT EXISTS{$this ?tr ?v}}
+							  NOT EXISTS{?tr rdf:type :ThematicRole. ?eno ?tr ?vo. $this ?tr ?v. FILTER((?tr!=:has-time)&&(?vo!=?v))}
+							  FILTER(IF(NOT EXISTS{?eno :has-time ?vo. $this :has-time ?v},true,
+									 IF(EXISTS{?eno :has-time ?vo. $this :has-time ?v. ?v :includes ?vo},true,false)))}"""];
+sh:targetClass :Rexist.
+
+:ruleCompliance8 rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?se a :Inactive}
+						WHERE{$this a :Active. $this :defeats ?se}"""];
+sh:targetClass :Active.
+
+#The rule for inferring :Active must be manually split, as it is not possible to define a single targetClass that works for all branches in the UNIONs. Therefore, a separate rule is created for each branch.
+:ruleCompliance9a rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?e a :Active}
+						WHERE{{{?e rdf:type $this}UNION{<<?e rdf:type $this>> rdf:type :false} $this rdfs:subClassOf*/rdf:type :Modality}
+							  NOT EXISTS{?se :defeats ?e. NOT EXISTS{?se a :Inactive}}}"""];
+sh:targetClass :Modality.
+
+:ruleCompliance9b rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this a :Active}
+						WHERE{$this rdf:type :Obligatory.
+							  NOT EXISTS{?se :defeats $this. NOT EXISTS{?se a :Inactive}}}"""];
+sh:targetClass :Obligatory.
+
+:ruleCompliance9c rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this a :Active}
+						WHERE{$this rdf:type :Permitted.
+							  NOT EXISTS{?se :defeats $this. NOT EXISTS{?se a :Inactive}}}"""];
+sh:targetClass :Permitted.
+
+:ruleCompliance9d rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{?e a :Active}
+						WHERE{?e rdf:type $this.
+							{<<?e rdf:type :A-Permitted>> rdf:type :false}UNION{<<?e rdf:type :M-Permitted>> rdf:type :false}UNION
+							{<<?e rdf:type :A-Obligatory>> rdf:type :false}UNION{<<?e rdf:type :M-Obligatory>> rdf:type :false}
+							NOT EXISTS{?se :defeats ?e. NOT EXISTS{?se a :Inactive}}}"""];
+sh:targetClass :EventualityType.
+
+:ruleCompliance9e rdf:type sh:NodeShape;
+sh:rule[rdf:type sh:SPARQLRule;
+sh:prefixes[sh:declare
+    [sh:prefix"xsd";sh:namespace"http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI],
+    [sh:prefix"rdf";sh:namespace"http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI],
+    [sh:prefix"rdfs";sh:namespace"http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI],
+    [sh:prefix"time";sh:namespace"http://www.w3.org/2006/time#"^^xsd:anyURI],
+    [sh:prefix"";sh:namespace"https://w3id.org/ontology/dlr#"^^xsd:anyURI]];
+    sh:construct """CONSTRUCT{$this a :Active}
+						WHERE{$this :defeats ?ea
+							  NOT EXISTS{?se :defeats $this. NOT EXISTS{?se a :Inactive}}}"""];
+sh:targetSubjectsOf :defeats.
+
+
