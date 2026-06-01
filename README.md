@@ -1,12 +1,12 @@
-<div style="text-align: justify;">
-  <p>
+<div>
+  <p style="text-align:justify;">
     This GitHub repository contains the Java source code accompanying the paper
     "Deontic Logic Reified: a deontic logic for the Semantic Web". The logic and all examples shown in the paper
     are implemented in RDF and SPARQL, and make use of the
     <a href="https://jena.apache.org/">Apache Jena</a> libraries for execution.
   </p>
 
-  <p>
+  <p style="text-align:justify;">
     There are two main subfolders: <code>DLRsuite</code> and <code>SHACLreasonerFromRobaldoetal2023</code>.
     The RDF and SPARQL resources defining Deontic Logic Reified (DLR) are contained in <code>DLRsuite</code>,
     while <code>SHACLreasonerFromRobaldoetal2023</code> contains the SHACL-based reasoner from the paper
