@@ -5,8 +5,8 @@
       <li>
         <code>D-KB</code> contains the rules corresponding to the selected D-KB formulae. The compact version of these rules can be found in the
         file <code>SPARQLrulesCompact.txt</code>. <code>runDRLrulesBuilder.bat</code> takes this file as input and generates the files
-        <code>DKBrules.ttl</code> and <code>DKBTBox.ttl</code> in the <code>D-KB</code> subfolder. These files contain the full versions of the
-        rules and the TBox to be executed by the DLR reasoner. This subfolder also includes <code>UseCaseBaseline.json</code> and
+        <code>DKBrules.ttl</code> and <code>DKBTBox.ttl</code> in the <code>D-KB</code> subfolder. These two files respectively contain the full 
+        versions of the rules and the TBox to be executed by the DLR reasoner. This subfolder also includes <code>UseCaseBaseline.json</code> and
         <code>reducedUseCaseBaseline.json</code>, which are used by <code>runGenerateAndTestAllRules.bat</code> to generate and test the rules in
         <code>DKBrules.ttl</code>. The file <code>reducedUseCaseBaseline.json</code> is used to test the subset of sample rules discussed in Section
         6 of the paper, while <code>UseCaseBaseline.json</code> is used to test the full set of rules.
