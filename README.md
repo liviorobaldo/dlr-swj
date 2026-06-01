@@ -13,4 +13,14 @@
     <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>,
     adapted to operate on the same DLR examples for comparison purposes.
   </p>
+  <p>
+    <code>compileAll.bat</code> compiles all Java files in both folders under Windows. Once these files have been compiled, one of the following run scripts can be executed:
+    <ul>
+      <li><code>runDRLrulesBuilder.bat</code></li>
+      <li><code>runExample.bat</code></li>
+      <li><code>runGenerateAndRunRandomABoxes.bat</code></li>
+      <li><code>runGenerateAndTestAllRules.bat</code></li>
+      <li><code>runSHACLreasonerFromRobaldoetal2023.bat</code></li>
+    </ul>
+  </p>
 </div>
