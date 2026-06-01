@@ -1,0 +1,119 @@
+@prefix : <https://w3id.org/ontology/dlr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://w3id.org/ontology/dlr#> .
+
+
+#================================================================================================================================================================
+# Inference rules
+#
+# :InferenceRule is a specialized class designed to store SPARQL rules in the CONSTRUCT-WHERE format for execution. Each instance of this class is 
+# associated with an xsd:string via the :has-sparql-code property, which defines the corresponding SPARQL rule. The automated reasoner first collects 
+# all individuals belonging to the :InferenceRule class. It then iteratively executes the SPARQL rules specified in the :has-sparql-code property until 
+# no new individuals are inferred.
+#================================================================================================================================================================
+
+:InferenceRule rdf:type rdfs:Class.
+:has-sparql-code rdf:type rdf:Property; rdfs:domain :InferenceRule; rdfs:range xsd:string.
+
+
+#================================================================================================================================================================
+# RDF schema inferences: rdfs:subclassOf, rdfs:domain, rdfs:range, and rdfs:subPropertyOf.
+#================================================================================================================================================================
+
+#RDF inference rules
+#For example, rdfs:subPropertyOf is needed because exceptions are represented using sub-properties of :defeats,
+#while in DLRCompliance.ttl we reference the more general property :defeats.
+[rdf:type :InferenceRule; :has-sparql-code """CONSTRUCT{?s rdf:type ?c}WHERE{?sc rdfs:subClassOf+ ?c. ?s rdf:type ?sc}"""].
+[rdf:type :InferenceRule; :has-sparql-code """CONSTRUCT{?s rdf:type ?c}WHERE{?p rdfs:domain ?c. ?s ?p ?o}"""].
+[rdf:type :InferenceRule; :has-sparql-code """CONSTRUCT{?o rdf:type ?c}WHERE{?p rdfs:range ?c. ?s ?p ?o}"""].
+[rdf:type :InferenceRule; :has-sparql-code """CONSTRUCT{?s ?p ?o}WHERE{?sp rdfs:subPropertyOf ?p. ?s ?sp ?o}"""].
+
+
+
+
+#================================================================================================================================================================
+# Top classes: eventualities, modalities, thematic roles, and the RDF properties :checks-exception and :defeats, for handling exceptions.
+#================================================================================================================================================================
+
+#Top classes:
+:Eventuality rdf:type rdfs:Class.
+:EventualityType rdf:type rdfs:Class.
+:Modality rdf:type rdfs:Class.
+:ThematicRole rdf:type rdfs:Class.
+
+#Rexist modality:
+:Rexist rdf:type rdfs:Class,:Modality.
+
+#Deontic modalities:
+:DeonticModality rdf:type rdfs:Class; rdfs:subClassOf :Modality.
+:Obligatory rdf:type rdfs:Class,:DeonticModality.
+:A-Obligatory rdf:type rdfs:Class; rdfs:subClassOf :Obligatory.
+:M-Obligatory rdf:type rdfs:Class; rdfs:subClassOf :Obligatory.
+:Permitted rdf:type rdfs:Class,:DeonticModality.
+:A-Permitted rdf:type rdfs:Class; rdfs:subClassOf :Permitted.
+:M-Permitted rdf:type rdfs:Class; rdfs:subClassOf :Permitted.
+
+#RDF properties for handling exceptions
+:checks-exception rdf:type rdf:Property.
+:defeats rdf:type rdf:Property.
+
+
+#================================================================================================================================================================
+# Extension of the Time Ontology to support temporal reasoning in deontic statements.
+# - The special instants :minusInfinity and :plusInfinity (corresponding to −∞ and +∞) are added.
+# - The properties :includes and :intersects to detect whether an interval contains another one or two intervals share at least one instant.
+#================================================================================================================================================================
+
+#−∞ and +∞ are special classes that we use to model intervals encompassing all time before or after a given moment.
+:minusInfinity rdf:type rdfs:Class.
+:plusInfinity rdf:type rdfs:Class.
+
+#The property 'includes' and the SPARQL rule to infer when one time:Interval includes another (sub-)time:Interval.
+:includes rdf:type rdf:Property; rdfs:domain time:Interval; rdfs:range time:Interval.
+[rdf:type :InferenceRule;
+	:has-sparql-code """CONSTRUCT{?I :includes ?sI}
+						WHERE{{?I time:hasBeginning/rdf:type :minusInfinity}UNION
+							  {?I time:hasBeginning*/time:inXSDDateTime ?bI. ?sI time:hasBeginning*/time:inXSDDateTime ?bsI. FILTER(?bI<=?bsI)}
+							  {?I time:hasEnd/rdf:type :plusInfinity}UNION
+							  {?I time:hasEnd*/time:inXSDDateTime ?eI. ?sI time:hasEnd*/time:inXSDDateTime ?esI. FILTER(?esI<=?eI)}}"""^^xsd:string].
+						
+#The property 'intersects' and the SPARQL rule to infer when one time:Interval intersects with another (sub-)time:Interval.
+:intersects rdf:type rdf:Property; rdfs:domain time:Interval; rdfs:range time:Interval.
+[rdf:type :InferenceRule;
+	:has-sparql-code """CONSTRUCT{?I1 :intersects ?I2. ?I2 :intersects ?I1}
+						WHERE{{?I1 :includes ?I2}UNION{?I1 :includes ?i. ?I2 time:hasBeginning|time:hasEnd ?i}}"""^^xsd:string].
+								
+#Every time:Interval includes itself (and therefore also intersects with itself, as derived by the previous rule).
+[rdf:type :InferenceRule;:has-sparql-code """CONSTRUCT{?I :includes ?I}WHERE{?I rdf:type time:Interval}"""^^xsd:string].
+#Every time:Interval includes its beginning and end, if any (and therefore also intersects with these, as derived by the previous-previous rule).
+[rdf:type :InferenceRule;:has-sparql-code """CONSTRUCT{?I :includes ?be}WHERE{?I (time:hasBeginning|time:hasEnd) ?be}"""^^xsd:string].
+
+#================================================================================================================================================================
+# Property 'not' and axiomatization of the property with respect to the modalities Rexist, Obligatory, and Permitted
+#================================================================================================================================================================
+
+#Property 'not'
+:not rdf:type rdf:Property; rdfs:domain :Eventuality; rdfs:range :Eventuality.
+
+#Classes :true and :false to assert the truth value of reified triples.
+:true rdf:type rdfs:Class; rdfs:subClassOf rdf:Statement.
+:false rdf:type rdfs:Class; rdfs:subClassOf rdf:Statement.
+
+#If two eventualities are related by 'not', then if one of them Rexist, the other does not and vice versa: ∀e,en[not(e,en)→(Rexist(e)↔¬Rexist(en))]
+[rdf:type :InferenceRule;
+	:has-sparql-code """CONSTRUCT{?s rdf:type ?o}
+						WHERE{?e :not|^:not ?ne. 
+							  BIND(IF(EXISTS{?e rdf:type :Rexist},Triple(?ne,rdf:type,:Rexist), IF(EXISTS{<<?e rdf:type :Rexist>> rdf:type :false},?ne,?s))AS ?s)
+							  FILTER(BOUND(?s))BIND(IF(isTriple(?s), :false, :Rexist) AS ?o)}"""^^xsd:string].
+
+#If an eventuality is permitted, its opposite eventuality is not obligatory and vice versa: ∀e,en[not(e,en)→(Obligatory(e)↔¬Permitted(en))]
+[rdf:type :InferenceRule;
+	:has-sparql-code """CONSTRUCT{?s rdf:type ?o}
+						WHERE{?e :not|^:not ?ne.
+							  VALUES ?m{:Obligatory :Permitted} VALUES ?om{:Obligatory :Permitted}FILTER(?m!=?om)
+							  BIND(IF(EXISTS{?e rdf:type ?m},Triple(?ne,rdf:type,?om),IF(EXISTS{<<?e rdf:type ?m>> rdf:type :false},?ne,?s))AS ?s)
+							  FILTER(BOUND(?s))BIND(IF(isTriple(?s),:false,?om)AS ?o)}"""^^xsd:string].
+

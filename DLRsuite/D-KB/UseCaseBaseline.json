@@ -1,0 +1,1942 @@
+{"D-KBrules":[
+	{
+		"index": "1",
+		"D-KBid": "statements1Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_1 rdf:type :DataSubject .
+			:z_1 :personaldata-of :w_1 .
+			:y_1 :controller-of :z_1 .
+			:x_1 rdf:type :Processor .
+			:edp_1 rdf:type :Rexist .
+			:edp_1 rdf:type :Nominates .
+			:edp_1 :has-time :t1 .
+			:edp_1 :has-agent :y_1 .
+			:edp_1 :has-object :x_1 .
+			:ep_1 rdf:type :Rexist .
+			:ep_1 rdf:type :ProcessPersonalData .
+			:ep_1 :has-time :t1 .
+			:ep_1 :has-agent :x_1 .
+			:ep_1 :has-object :z_1 .
+			:epup_1 rdf:type :Purpose .
+			:ep_1 :is-based-on :epup_1 .
+		""",
+		"consequent": """
+			:ekl_1 rdf:type :Rexist.
+			:ekl_1 rdf:type :Keep.
+			:ekl_1 :has-time :t_including_t1.
+			:ekl_1 :has-agent :x_1.
+			:ekl_1 :has-object :ep_1.
+			:ekl_1 :has-object-state :lawful.
+
+			:ekf_1 rdf:type :Rexist.
+			:ekf_1 rdf:type :Keep.
+			:ekf_1 :has-time :t_including_t1.
+			:ekf_1 :has-agent :x_1.
+			:ekf_1 :has-object :ep_1.
+			:ekf_1 :has-object-state :fair.
+			
+			:ekt_1 rdf:type :Rexist.
+			:ekt_1 :has-time :t_including_t1.
+			:ekt_1 rdf:type :Keep.
+			:ekt_1 :has-agent :x_1.
+			:ekt_1 :has-object :ep_1.
+			:ekt_1 :has-object-state :transparent.
+		"""
+	},
+	{
+		"index": "2",
+		"D-KBid": "statements2Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_2 rdf:type :DataSubject .
+			:z_2 :personaldata-of :w_2 .
+			:y_2 :controller-of :z_2 .
+			:x_2 rdf:type :Processor .
+			:edp_2 rdf:type :Rexist .
+			:edp_2 rdf:type :Nominates .
+			:edp_2 :has-time :t1 .
+			:edp_2 :has-agent :y_2 .
+			:edp_2 :has-object :x_2 .
+			:ep_2 rdf:type :Rexist .
+			:ep_2 rdf:type :ProcessPersonalData .
+			:ep_2 :has-time :t1 .
+			:ep_2 :has-agent :x_2 .
+			:ep_2 :has-object :z_2 .
+			:ec_2 rdf:type :Rexist .
+			:ec_2 rdf:type :CollectPersonalData .
+			:ec_2 :has-time :t2 .
+			:ec_2 :has-agent :x_2 .
+			:ec_2 :has-object :z_2 .
+			:epuc_2 rdf:type :Purpose .
+			:ec_2 :is-based-on :epuc_2 .
+		""",
+		"consequent": """				
+			:esp_2 rdf:type :Rexist.
+			:esp_2 rdf:type :Specify.
+			:esp_2 :has-time :t_before_t2 .
+			:esp_2 :has-agent :x_2.
+			:esp_2 :has-object :epuc_2.
+
+			:elg_2 rdf:type :Rexist.
+			:elg_2 rdf:type :Keep.
+			:elg_2 :has-time :t_including_t2.
+			:elg_2 :has-agent :x_2.
+			:elg_2 :has-object :epuc_2.
+			:elg_2 :has-object-state :legitimate.
+			
+			:exp_2 rdf:type :Rexist.
+			:exp_2 :has-time :t_including_t2.
+			:exp_2 rdf:type :Keep.
+			:exp_2 :has-agent :x_2.
+			:exp_2 :has-object :epuc_2.
+			:exp_2 :has-object-state :explicit.
+			
+			:ecmp_2 rdf:type :Rexist.
+			:ecmp_2 :has-time :t_including_t1.
+			:ecmp_2 rdf:type :Keep.
+			:ecmp_2 :has-agent :x_2.
+			:ecmp_2 :has-object :ep_2.
+			:ecmp_2 :has-object-state :compatible.
+			:ecmp_2 :has-object-state-with :epuc_2.
+		"""
+	},
+	{
+		"index": "3",
+		"D-KBid": "statements2Formula2",
+		"type": "constitutive",
+		"antecedent": """
+			:epup_3 rdf:type :Purpose . 
+			:ep_2 :is-based-on :epup_3 .
+			:epup_3 rdf:type :PublicInterest .
+		""",
+		"consequent": "2"
+	},
+	{
+		"index": "4",
+		"D-KBid": "statements3Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_4 rdf:type :DataSubject .
+			:z_4 :personaldata-of :w_4 .
+			:y_4 :controller-of :z_4 .
+			:x_4 rdf:type :Processor .
+			:edp_4 rdf:type :Rexist .
+			:edp_4 rdf:type :Nominates .
+			:edp_4 :has-time :t1 .
+			:edp_4 :has-agent :y_4 .
+			:edp_4 :has-object :x_4 .
+			:ep_4 rdf:type :Rexist .
+			:ep_4 rdf:type :ProcessPersonalData .
+			:ep_4 :has-time :t1 .
+			:ep_4 :has-agent :x_4 .
+			:ep_4 :has-object :z_4 .
+			:epup_4 rdf:type :Purpose .
+			:ep_4 :is-based-on :epup_4 .
+		""",
+		"consequent": """
+			:eadq_4 rdf:type :Rexist.
+			:eadq_4 rdf:type :Keep.
+			:eadq_4 :has-time :t_including_t1.
+			:eadq_4 :has-agent :x_4.
+			:eadq_4 :has-object :z_4.
+			:eadq_4 :has-object-state :adequate.
+			:eadq_4 :has-object-state-with :epup_4.
+			
+			:erlv_4 rdf:type :Rexist.
+			:erlv_4 :has-time :t_including_t1.
+			:erlv_4 rdf:type :Keep.
+			:erlv_4 :has-agent :x_4.
+			:erlv_4 :has-object :z_4.
+			:erlv_4 :has-object-state :relevant.
+			:erlv_4 :has-object-state-to :epup_4.
+			
+			:elmt_4 rdf:type :Rexist.
+			:elmt_4 :has-time :t_including_t1.
+			:elmt_4 rdf:type :Keep.
+			:elmt_4 :has-agent :x_4.
+			:elmt_4 :has-object :z_4.
+			:elmt_4 :has-object-state :limited.
+			:elmt_4 :has-object-state-to :epup_4.
+		"""
+	},
+	{
+		"index": "5",
+		"D-KBid": "statements4Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_5 rdf:type :DataSubject .
+			:z_5 :personaldata-of :w_5 .
+			:y_5 :controller-of :z_5 .
+			:x_5 rdf:type :Processor .
+			:edp_5 rdf:type :Rexist .
+			:edp_5 rdf:type :Nominates .
+			:edp_5 :has-time :t1 .
+			:edp_5 :has-agent :y_5 .
+			:edp_5 :has-object :x_5 .
+			:ep_5 rdf:type :Rexist .
+			:ep_5 rdf:type :ProcessPersonalData .
+			:ep_5 :has-time :t1 .
+			:ep_5 :has-agent :x_5 .
+			:ep_5 :has-object :z_5 .
+			:epup_5 rdf:type :Purpose .
+			:ep_5 :is-based-on :epup_5 .
+		""",
+		"consequent": """
+			:eacc_5 rdf:type :Rexist.
+			:eacc_5 rdf:type :Keep.
+			:eacc_5 :has-time :t_including_t1.
+			:eacc_5 :has-agent :x_5.
+			:eacc_5 :has-object :z_5.
+			:eacc_5 :has-object-state :accurate.
+			
+			:eutd_5 rdf:type :Rexist.
+			:eutd_5 :has-time :t_including_t1.
+			:eutd_5 rdf:type :Keep.
+			:eutd_5 :has-agent :x_5.
+			:eutd_5 :has-object :z_5.
+			:eutd_5 :has-object-state :up-to-date.
+		"""
+	},
+	{
+		"index": "6",
+		"D-KBid": "statements4Formula2",
+		"type": "regulative",
+		"antecedent": """
+			:w_6 rdf:type :DataSubject .
+			:z_6 :personaldata-of :w_6 .
+			:y_6 :controller-of :z_6 .
+			:x_6 rdf:type :Processor .
+			:edp_6 rdf:type :Rexist .
+			:edp_6 rdf:type :Nominates .
+			:edp_6 :has-time :t1 .
+			:edp_6 :has-agent :y_6 .
+			:edp_6 :has-object :x_6 .
+			:ep_6 rdf:type :Rexist .
+			:ep_6 rdf:type :ProcessPersonalData .
+			:ep_6 :has-time :t1 .
+			:ep_6 :has-agent :x_6 .
+			:ep_6 :has-object :z_6 .
+			:epup_6 rdf:type :Purpose .
+			:ep_6 :is-based-on :epup_6 .
+			:z_6 rdf:type :inaccurate .
+		""",
+		"consequent": """
+			:edlt_6 rdf:type :Rexist .
+			:edlt_6 rdf:type :Delete .
+			:edlt_6 :has-time :t_10minutes_after_t1 .
+			:edlt_6 :has-agent :x_6 .
+			:edlt_6 :has-object :z_6 .
+		"""
+	},
+	{
+		"index": "7",
+		"D-KBid": "statements5Formula1",
+		"type": "regulative",	
+		"antecedent": """
+			:w_7 rdf:type :DataSubject .
+			:z_7 :personaldata-of :w_7 .
+			:y_7 :controller-of :z_7 .
+			:x_7 rdf:type :Processor .
+			:edp_7 rdf:type :Rexist .
+			:edp_7 rdf:type :Nominates .
+			:edp_7 :has-time :t1 .
+			:edp_7 :has-agent :y_7 .
+			:edp_7 :has-object :x_7 .
+			:ep_7 rdf:type :Rexist .
+			:ep_7 rdf:type :ProcessPersonalData .
+			:ep_7 :has-time :t1 .
+			:ep_7 :has-agent :x_7 .
+			:ep_7 :has-object :z_7 .
+			:epup_7 rdf:type :Purpose .
+			:ep_7 :is-based-on :epup_7 .
+			:estr_7 rdf:type :Rexist .
+			:estr_7 rdf:type :Store .
+			:estr_7 :has-time :t_after_t1 .
+			:estr_7 :has-agent :x_7 . 
+			:estr_7 :has-object :z_7 .
+			:estr_7 :has-location :pdr_7.
+			:pdr_7 rdf:type :PersonalDataRecord.
+			:enbnf_7 rdf:type :Rexist .
+			:enbnf_7 :has-time :t_after_t1 .
+			:enbnf_7 :not :ebnf_7 . 
+			:enbnf_7 rdf:type :Eventuality .
+			:ebnf_7 rdf:type :BeNecessaryFor .
+			:ebnf_7 :has-agent :estr_7 .
+			:ebnf_7 :has-object :epup_7 .
+		""",
+		"consequent": """
+			:ekdsnli_7 rdf:type :Rexist .
+			:ekdsnli_7 rdf:type :Keep .
+			:ekdsnli_7 :has-time :t_including_t_after_t1 .
+			:ekdsnli_7 :has-agent :x_7 .
+			:ekdsnli_7 :has-object :z_7 .
+			:ekdsnli_7 :has-object-state :data-subject-no-longer-identifiable.
+		"""
+	},
+	{
+		"index": "8",
+		"D-KBid": "statements6Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_8 rdf:type :DataSubject .
+			:z_8 :personaldata-of :w_8 .
+			:y_8 :controller-of :z_8 .
+			:x_8 rdf:type :Processor .
+			:edp_8 rdf:type :Rexist .
+			:edp_8 rdf:type :Nominates .
+			:edp_8 :has-time :t1 .
+			:edp_8 :has-agent :y_8 .
+			:edp_8 :has-object :x_8 .
+			:ep_8 rdf:type :Rexist .
+			:ep_8 rdf:type :ProcessPersonalData .
+			:ep_8 :has-time :t1 .
+			:ep_8 :has-agent :x_8 .
+			:ep_8 :has-object :z_8 .
+			:epup_8 rdf:type :Purpose .
+			:ep_8 :is-based-on :epup_8 .
+		""",
+		"consequent": """	
+			:esc_8 rdf:type :Rexist.
+			:esc_8 rdf:type :Keep.
+			:esc_8 :has-time :t_including_t1.
+			:esc_8 :has-agent :x_8.
+			:esc_8 :has-object :ep_8.
+			:esc_8 :has-object-state :secure.
+		"""
+	},
+	{
+		"index": "9",
+		"D-KBid": "statements7Formula1",
+		"type": "constitutive",	
+		"antecedent": """
+			:egcp_9 rdf:type :Rexist .
+			:egcp_9 rdf:type :Give .
+			:egcp_9 :has-agent :w_1 .
+			:egcp_9 :has-object :cp_9 .
+			:egcp_9 :has-time :t_before_t1 .
+			:cp_9 :is-consent-for :epup_1 .
+		""",
+		"consequent": "1"
+	},
+	{
+		"index": "10",
+		"D-KBid": "statements8Formula1",
+		"type": "constitutive",	
+		"antecedent": """
+			:ebnfc_10 rdf:type :Rexist .
+			:ebnfc_10 rdf:type :BeNecessaryFor .
+			:ebnfc_10 :has-agent :ep_1 .
+			:ebnfc_10 :has-object :exct_10 .
+			:exct_10 rdf:type :Execute .
+			:exct_10 :has-object :cntr_10 .
+			:cntr_10 rdf:type :Contract .
+			:w_1 :is-party-in :cntr_10 .
+		""",
+		"consequent": "1"
+	},
+	{
+		"index": "11",
+		"D-KBid": "statements9Formula1",
+		"type": "constitutive",	
+		"antecedent": """
+			:ebnfoby_11 rdf:type :Rexist .
+			:ebnfoby_11 rdf:type :BeNecessaryFor .
+			:ebnfoby_11 :has-agent :ep_1 .
+			:ebnfoby_11 :has-object :oby_11 .
+			:oby_11 rdf:type :Obligatory .
+			:oby_11 :has-agent :y_1 .
+		""",
+		"consequent": "1"
+	},
+	{
+		"index": "12",
+		"D-KBid": "statements10Formula1",
+		"type": "constitutive",	
+		"antecedent": """
+			:ebnfpvids_12 rdf:type :Rexist .
+			:ebnfpvids_12 rdf:type :BeNecessaryFor .
+			:ebnfpvids_12 :has-agent :ep_1 .
+			:ebnfpvids_12 :has-object :pvids_12 .
+			:pvids_12 rdf:type :Protect .
+			:pvids_12 :has-object :vi_12 .
+			:vi_12 :vital-interest-of :w_1 .
+		""",
+		"consequent": "1"
+	},
+	{
+		"index": "13",
+		"D-KBid": "statements11Formula1",
+		"type": "constitutive",	
+		"antecedent": """
+			:ebnfetpi_13 rdf:type :Rexist .
+			:ebnfetpi_13 rdf:type :BeNecessaryFor .
+			:ebnfetpi_13 :has-agent :ep_1 .
+			:ebnfetpi_13 :has-object :extpi_13 .
+			:extpi_13 rdf:type :Execute .
+			:extpi_13 :has-object :tpi_13 .
+			:tpi_13 :is-related-to :pi_13 .
+			:pi_13 rdf:type :PublicInterest .
+		""",
+		"consequent": "1"
+	},	
+	{
+		"index": "14",
+		"D-KBid": "statements12Formula1",
+		"type": "constitutive",	
+		"antecedent": """
+			:ebnfliy_14 rdf:type :Rexist .
+			:ebnfliy_14 rdf:type :BeNecessaryFor .
+			:ebnfliy_14 :has-agent :ep_1 .
+			:ebnfliy_14 :has-object :liy_14 .
+			:liy_14 :legitimate-interest-of :y_1 .
+			<<:ep_1 :causes :riskforrf_14>> rdf:type :false .
+			:riskforrf_14 :is-risk-for :rf_14 .
+			:rf_14 :rights-and-freedoms-of :w_1 .
+		""",
+		"consequent": "1"
+	},
+	{
+		"index": "15",
+		"D-KBid": "statements12Formula2",
+		"type": "constitutive",	
+		"antecedent": """
+			:ebnfexpb_15 rdf:type :Rexist .
+			:ebnfexpb_15 rdf:type :BeNecessaryFor .
+			:ebnfexpb_15 :has-agent :ep_1 .
+			:ebnfexpb_15 :has-object :expb_15 .
+			:expb_15 rdf:type :Execute .
+			:expb_15 :has-agent :pb_15 .
+			:expb_15 :has-object :tpb_15 .
+			:pb_15 rdf:type :Public_Body .
+		""",
+		"consequent": "1"
+	},
+	{
+		"index": "16",
+		"D-KBid": "statements13Formula1",
+		"type": "regulative",	
+		"antecedent": """
+			:w_16 rdf:type :DataSubject .
+			:z_16 :personaldata-of :w_16 .
+			:y_16 :controller-of :z_16 .
+			:x_16 rdf:type :Processor .
+			:edp_16 rdf:type :Rexist .
+			:edp_16 rdf:type :Nominates .
+			:edp_16 :has-time :t1 .
+			:edp_16 :has-agent :y_16 .
+			:edp_16 :has-object :x_16 .
+			:ep_16 rdf:type :Rexist .
+			:ep_16 rdf:type :ProcessPersonalData .
+			:ep_16 :has-time :t1 .
+			:ep_16 :has-agent :x_16 .
+			:ep_16 :has-object :z_16 .
+			:ec_16 rdf:type :Rexist .
+			:ec_16 rdf:type :CollectPersonalData .
+			:ec_16 :has-time :t2 .
+			:ec_16 :has-agent :x_16 .
+			:ec_16 :has-object :z_16 .
+			:epup_16 rdf:type :Purpose .
+			:ep_16 :is-based-on :epup_16 .
+			:epuc_16 rdf:type :Purpose .
+			:ec_16 :is-based-on :epuc_16 .
+			:engcp_16 rdf:type :Rexist .
+			:engcp_16 :not :egcp_16 . 
+			:engcp_16 rdf:type :Eventuality .
+			:egcp_16 rdf:type :Give .
+			:egcp_16 :has-agent :w_16 .
+			:egcp_16 :has-object :cp_16 .
+			:egcp_16 :has-time :t_before_t1 .
+			:cp_16 :is-consent-for :epup_16 .
+			:ennfobj23_16 rdf:type :Rexist . 
+			:ennfobj23_16 :not :enfobj23_16 .
+			:enfobj23_16 rdf:type :BeNecessaryFor . 
+			:enfobj23_16 :has-agent :ep_16. 
+			:enfobj23_16 :has-object :esfgobj23_16 .		
+			:esfgobj23_16 rdf:type :Safeguard .
+			:esfgobj23_16 :has-agent :l_16 .
+			:esfgobj23_16 :has-object :obj23_16 .
+			:l_16 rdf:type :EUorMSlaw .
+			:obj23_16 rdf:type :ObjectivesArt23P1 .			
+			:elipc_16 :links :epup_16 .
+			:elipc_16 :links :epuc_16 .
+			:ctxp_16 :is-context-of :ep_16 . 
+			:natz_16 :is-nature-of :z_16 .
+			:envs_16 rdf:type :Rexist . 
+			:envs_16 rdf:type :Envisage .
+			:envs_16 :has-time :t1 .
+			:envs_16 :has-agent :w_16 .
+			:envs_16 :has-object :econseqp_16 .
+			:ep_16 :cause :econseqp_16 . 
+		""",
+		"consequent": """
+			:etkia1_16 rdf:type :Rexist .
+			:etkia1_16 rdf:type :TakeIntoAccount .
+			:etkia1_16 :has-time :t_instant_inside_t1 .
+			:etkia1_16 :has-agent :y_16 . 
+			:etkia1_16 :has-object :elipc_16 .
+			
+			:etkia2_16 rdf:type :Rexist .
+			:etkia2_16 rdf:type :TakeIntoAccount .
+			:etkia2_16 :has-time :t_instant_inside_t1 .
+			:etkia2_16 :has-agent :y_16 . 
+			:etkia2_16 :has-object :ctxp_16 .
+			
+			:etkia3_16 rdf:type :Rexist .
+			:etkia3_16 rdf:type :TakeIntoAccount .
+			:etkia3_16 :has-time :t_instant_inside_t1 .
+			:etkia3_16 :has-agent :y_16 . 
+			:etkia3_16 :has-object :natz_16 .
+			
+			:etkia4_16 rdf:type :Rexist .
+			:etkia4_16 rdf:type :TakeIntoAccount .
+			:etkia4_16 :has-time :t_instant_inside_t1 .
+			:etkia4_16 :has-agent :y_16 . 
+			:etkia4_16 :has-object :econseqp_16 .
+		"""
+	},
+	{
+		"index": "17",
+		"D-KBid": "statements14Formula1",
+		"type": "regulative",	
+		"antecedent": """
+			:w_17 rdf:type :DataSubject .
+			:z_17 :personaldata-of :w_17 .
+			:y_17 :controller-of :z_17 .
+			:x_17 rdf:type :Processor .
+			:edp_17 rdf:type :Rexist .
+			:edp_17 rdf:type :Nominates .
+			:edp_17 :has-time :t1 .
+			:edp_17 :has-agent :y_17 .
+			:edp_17 :has-object :x_17 .
+			:ep_17 rdf:type :Rexist .
+			:ep_17 rdf:type :ProcessPersonalData .
+			:ep_17 :has-time :t1 .
+			:ep_17 :has-agent :x_17 .
+			:ep_17 :has-object :z_17 .
+			:epup_17 rdf:type :Purpose .
+			:ep_17 :is-based-on :epup_17 .
+			:egcp_17 rdf:type :Rexist .
+			:egcp_17 rdf:type :Give .
+			:egcp_17 :has-agent :w_17 .
+			:egcp_17 :has-object :cp_17 .
+			:egcp_17 :has-time :t_before_t1 .
+			:cp_17 :is-consent-for :epup_17 .
+		""",	
+		"consequent": """
+			:edms_17 rdf:type :Rexist .
+			:edms_17 rdf:type :Demonstrate .
+			:edms_17 :has-time :t_instant_inside_t1 .
+			:edms_17 :has-agent :y_17 . 
+			:edms_17 :has-object :egcp_17 .
+		"""
+	},
+	{
+		"index": "18",
+		"D-KBid": "statements15Formula1",
+		"type": "regulative",	
+		"antecedent": """
+			:w_18 rdf:type :DataSubject .
+			:z_18 :personaldata-of :w_18 .
+			:y_18 :controller-of :z_18 .
+			:x_18 rdf:type :Processor .
+			:edp_18 rdf:type :Rexist .
+			:edp_18 rdf:type :Nominates .
+			:edp_18 :has-time :t1 .
+			:edp_18 :has-agent :y_18 .
+			:edp_18 :has-object :x_18 .
+			:ep_18 rdf:type :Rexist .
+			:ep_18 rdf:type :ProcessPersonalData .
+			:ep_18 :has-time :t1 .
+			:ep_18 :has-agent :x_18 .
+			:ep_18 :has-object :z_18 .
+			:epup_18 rdf:type :Purpose .
+			:ep_18 :is-based-on :epup_18 .
+			:egcp_18 rdf:type :Rexist .
+			:egcp_18 rdf:type :Give .
+			:egcp_18 :has-agent :w_18 .
+			:egcp_18 :has-object :cp_18 .
+			:egcp_18 :has-time :t_before_t1 .
+			:cp_18 :is-consent-for :epup_18 .
+			:erwwd_18 rdf:type :Rexist .
+			:erwwd_18 rdf:type :Request .
+			:erwwd_18 :has-time :t2 .
+			:erwwd_18 :has-object :cp_18 .
+			:erwwd_18 :has-recipient :w_18 .
+			:erwwd_18 :has-instrument :wrdlc_18 .
+			:wrdlc_18 rdf:type :WrittenDeclaration .
+			:cp_18 :is-part-of :wrdlc_18 .
+		""",
+		"consequent": """
+			:ekerc_18 rdf:type :Rexist .
+			:ekerc_18 :has-time :t_including_t2 . 
+			:ekerc_18 rdf:type :Keep .
+			:ekerc_18 :has-agent :x_18 .
+			:ekerc_18 :has-object :erwwd_18 .
+			:ekerc_18 :has-object-state :clear . 
+		"""
+	},	
+	{
+		"index": "19",
+		"D-KBid": "statements16Formula1",
+		"type": "regulative",	
+		"antecedent": """
+			:w_19 rdf:type :DataSubject .
+			:z_19 :personaldata-of :w_19 .
+			:y_19 :controller-of :z_19 .
+			:x_19 rdf:type :Processor .
+			:edp_19 rdf:type :Rexist .
+			:edp_19 rdf:type :Nominates .
+			:edp_19 :has-time :t1 .
+			:edp_19 :has-agent :y_19 .
+			:edp_19 :has-object :x_19 .
+			:ep_19 rdf:type :Rexist .
+			:ep_19 rdf:type :ProcessPersonalData .
+			:ep_19 :has-time :t1 .
+			:ep_19 :has-agent :x_19 .
+			:ep_19 :has-object :z_19 .
+			:epup_19 rdf:type :Purpose .
+			:ep_19 :is-based-on :epup_19 .
+			:egcp_19 rdf:type :Rexist .
+			:egcp_19 rdf:type :Give .
+			:egcp_19 :has-agent :w_19 .
+			:egcp_19 :has-object :cp_19 .
+			:egcp_19 :has-time :t_before_t1 .
+			:cp_19 :is-consent-for :epup_19 .
+		""",	
+		"consequent": """
+			:ewdr_19 rdf:type :Rexist .
+			:ewdr_19 rdf:type :Withdraw .
+			:ewdr_19 :has-time :t_instant_inside_t1 .
+			:ewdr_19 :has-agent :w_19 .
+			:ewdr_19 :has-object :cp_19 .
+			:cp_19 :is-consent-for :epup_19 .
+		"""
+	},	
+	{
+		"index": "20",
+		"D-KBid": "statements16Formula2",
+		"type": "regulative",
+		"antecedent": """
+			:w_20 rdf:type :DataSubject .
+			:z_20 :personaldata-of :w_20 .
+			:y_20 :controller-of :z_20 .
+			:x_20 rdf:type :Processor .
+			:edp_20 rdf:type :Rexist .
+			:edp_20 rdf:type :Nominates .
+			:edp_20 :has-time :t1 .
+			:edp_20 :has-agent :y_20 .
+			:edp_20 :has-object :x_20 .
+			:ep_20 rdf:type :Rexist .
+			:ep_20 rdf:type :ProcessPersonalData .
+			:ep_20 :has-time :t1 .
+			:ep_20 :has-agent :x_20 .
+			:ep_20 :has-object :z_20 .
+			:epup_20 rdf:type :Purpose .
+			:ep_20 :is-based-on :epup_20 .
+			:cp_20 :is-consent-for :epup_20 .
+			:epwtd_20 rdf:type :Permitted .
+			:epwtd_20 rdf:type :Withdraw .
+			:epwtd_20 :has-time :t1 .
+			:epwtd_20 :has-agent :w_20 .
+			:epwtd_20 :has-object :cp_20 .
+		""",
+		"consequent": """
+			:ecpwtd_20 rdf:type :Rexist .
+			:ecpwtd_20 rdf:type :Communicate .
+			:ecpwtd_20 :has-time :t_instant_inside_t1 .
+			:ecpwtd_20 :has-agent :x_20 .
+			:ecpwtd_20 :has-object :epwtd_20 .
+			:ecpwtd_20 :has-recipient :w_20 .
+		"""
+	},	
+	{
+		"index": "21",
+		"D-KBid": "statements16Formula3",
+		"type": "regulative",
+		"antecedent": """
+			:w_21 rdf:type :DataSubject .
+			:z_21 :personaldata-of :w_21 .
+			:y_21 :controller-of :z_21 .
+			:x_21 rdf:type :Processor .
+			:edp_21 rdf:type :Rexist .
+			:edp_21 rdf:type :Nominates .
+			:edp_21 :has-time :t1 .
+			:edp_21 :has-agent :y_21 .
+			:edp_21 :has-object :x_21 .
+			:ep_21 rdf:type :Rexist .
+			:ep_21 rdf:type :ProcessPersonalData .
+			:ep_21 :has-time :t1 .
+			:ep_21 :has-agent :x_21 .
+			:ep_21 :has-object :z_21 .
+			:epup_21 rdf:type :Purpose .
+			:ep_21 :is-based-on :epup_21 .
+			:cp_21 :is-consent-for :epup_21 .
+			:egcp_21 rdf:type :Rexist .
+			:egcp_21 rdf:type :Give .
+			:egcp_21 :has-agent :w_21 .
+			:egcp_21 :has-object :cp_21 .
+			:epwtd_21 rdf:type :Permitted .
+			:epwtd_21 rdf:type :Withdraw .
+			:epwtd_21 :has-time :t1 .
+			:epwtd_21 :has-agent :w_21 .
+			:epwtd_21 :has-object :cp_21 .
+		""",
+		"consequent": """
+			:ekaeaw_21 rdf:type :Rexist .
+			:ekaeaw_21 rdf:type :Keep .
+			:ekaeaw_21 :has-time :t_including_t1 .
+			:ekaeaw_21 :has-agent :x_21 .
+			:ekaeaw_21 :has-object :epwtd_21 .
+			:ekaeaw_21 :has-object-state :easy .
+			:ekaeaw_21 :has-object-state-as :egcp_21 .
+		"""
+	},
+	{
+		"index": "22",
+		"D-KBid": "statements17Formula1",
+		"type": "exception",
+		"antecedent": """
+			:w_1 :has-member-state :ms_22 .
+			:ms_22 :has-minimal-age-for-consent 14 .
+		""",
+		"consequent": "23"
+	},
+	{
+		"index": "23",
+		"D-KBid": "statements17Formula2",
+		"type": "exception",
+		"antecedent": """
+			:w_1 :has-age 14 .
+		""",
+		"consequent": "9"
+	},
+	{
+		"index": "24",
+		"D-KBid": "statements17Formula3",
+		"type": "constitutive",
+		"antecedent": """
+			:eghcp_24 rdf:type :Rexist .
+			:eghcp_24 rdf:type :Give .
+			:eghcp_24 :has-agent :hpr_24 .
+			:eghcp_24 :has-object :cp_24 .
+			:eghcp_24 :has-time :t_before_t1 .
+			:cp_24 :is-consent-for :epup_1 .
+			:hpr_24 :is-holder-of-parental-responsibility :w_1 .
+		""",
+		"consequent": "1"
+	},		
+	{
+		"index": "25",
+		"D-KBid": "statements18Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_25 rdf:type :DataSubject .
+			:z_25 :personaldata-of :w_25 .
+			:y_25 :controller-of :z_25 .
+			:x_25 rdf:type :Processor .
+			:edp_25 rdf:type :Rexist .
+			:edp_25 rdf:type :Nominates .
+			:edp_25 :has-time :t1 .
+			:edp_25 :has-agent :y_25 .
+			:edp_25 :has-object :x_25 .
+			:ep_25 rdf:type :Rexist .
+			:ep_25 rdf:type :ProcessPersonalData .
+			:ep_25 :has-time :t1 .
+			:ep_25 :has-agent :x_25 .
+			:ep_25 :has-object :z_25 .
+			:epup_25 rdf:type :Purpose .
+			:ep_25 :is-based-on :epup_25 .
+			:cp_25 :is-consent-for :epup_25 .
+			:eghcp_25 rdf:type :Rexist .
+			:eghcp_25 rdf:type :Give .
+			:eghcp_25 :has-agent :hpr_25 .
+			:eghcp_25 :has-object :cp_25 .
+			:eghcp_25 :has-time :t_before_t1 .
+			:hpr_25 :is-holder-of-parental-responsibility :w_25 .
+		""",
+		"consequent": """
+			:easc_25 rdf:type :Rexist .
+			:easc_25 rdf:type :Ascertain .
+			:easc_25 :has-time :t_before_t1 .
+			:easc_25 :has-agent :y_25 .
+			:easc_25 :has-object :eghcp_25 .
+		"""
+	},
+	{
+		"index": "26",
+		"D-KBid": "statements19Formula1/statements19Formula2/statements19Formula3/statements19Formula4/statements19Formula7/statements19Formula8/statements19Formula9",
+		"type": "regulative",
+		"antecedent": """
+			:w_26 rdf:type :DataSubject .
+			:z_26 :personaldata-of :w_26 .
+			:y_26 :controller-of :z_26 .
+			:x_26 rdf:type :Processor .
+			:edp_26 rdf:type :Rexist .
+			:edp_26 rdf:type :Nominates .
+			:edp_26 :has-time :t1 .
+			:edp_26 :has-agent :y_26 .
+			:edp_26 :has-object :x_26 .
+			:z_26 rdf:type :OpinionData .
+			:epup_26 rdf:type :Purpose .
+		""",
+		"consequent": """
+			:ep_26 rdf:type :Rexist .
+			:ep_26 rdf:type :ProcessPersonalData .
+			:ep_26 :has-agent :x_26 .
+			:ep_26 :has-object :z_26 .
+			:ep_26 :has-time :t1 .
+			:ep_26 :is-based-on :epup_26 .
+		"""
+	},
+	{
+		"index": "27",
+		"D-KBid": "statements19Formula5",
+		"type": "regulative",
+		"antecedent": """
+			:w_27 rdf:type :DataSubject .
+			:z_27 :personaldata-of :w_27 .
+			:y_27 :controller-of :z_27 .
+			:x_27 rdf:type :Processor .
+			:edp_27 rdf:type :Rexist .
+			:edp_27 rdf:type :Nominates .
+			:edp_27 :has-time :t1 .
+			:edp_27 :has-agent :y_27 .
+			:edp_27 :has-object :x_27 .
+			:z_27 rdf:type :GeneticData .
+			:epup_27 rdf:type :Purpose .
+			:epup_27 :is-identification-of :w_27 .
+		""",
+		"consequent": """
+			:ep_27 rdf:type :Rexist .
+			:ep_27 rdf:type :ProcessPersonalData .
+			:ep_27 :has-agent :x_27 .
+			:ep_27 :has-object :z_27 .
+			:ep_27 :has-time :t1 .
+			:ep_27 :is-based-on :epup_27 .
+		"""
+	},
+	{
+		"index": "28",
+		"D-KBid": "statements19Formula6",
+		"type": "regulative",
+		"antecedent": """
+			:w_28 rdf:type :DataSubject .
+			:z_28 :personaldata-of :w_28 .
+			:y_28 :controller-of :z_28 .
+			:x_28 rdf:type :Processor .
+			:edp_28 rdf:type :Rexist .
+			:edp_28 rdf:type :Nominates .
+			:edp_28 :has-time :t1 .
+			:edp_28 :has-agent :y_28 .
+			:edp_28 :has-object :x_28 .
+			:z_28 rdf:type :BiometricData .
+			:epup_28 rdf:type :Purpose .
+			:epup_28 :is-identification-of :w_28 .
+		""",
+		"consequent": """
+			:ep_28 rdf:type :Rexist .
+			:ep_28 rdf:type :ProcessPersonalData .
+			:ep_28 :has-agent :x_28 .
+			:ep_28 :has-object :z_28 .
+			:ep_28 :has-time :t1 .
+			:ep_28 :is-based-on :epup_28 .
+		"""
+	},
+	{
+		"index": "29",
+		"D-KBid": "statements20Formula1",
+		"type": "exception",
+		"antecedent": """
+			:egcp_29 rdf:type :Rexist .
+			:egcp_29 rdf:type :Give .
+			:egcp_29 :has-agent :w_26 .
+			:egcp_29 :has-object :cp_29 .
+			:egcp_29 :has-time :t_before_t1 .
+			:cp_29 :is-consent-for :epup_26 .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "30",
+		"D-KBid": "statements20Formula1",
+		"type": "exception",
+		"antecedent": """
+			:egcp_30 rdf:type :Rexist .
+			:egcp_30 rdf:type :Give .
+			:egcp_30 :has-agent :w_27 .
+			:egcp_30 :has-object :cp_30 .
+			:egcp_30 :has-time :t_before_t1 .
+			:cp_30 :is-consent-for :epup_27 .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "31",
+		"D-KBid": "statements20Formula1",
+		"type": "exception",
+		"antecedent": """
+			:egcp_31 rdf:type :Rexist .
+			:egcp_31 rdf:type :Give .
+			:egcp_31 :has-agent :w_28 .
+			:egcp_31 :has-object :cp_31 .
+			:egcp_31 :has-time :t_before_t1 .
+			:cp_31 :is-consent-for :epup_28 .
+		""",
+		"consequent": "28"
+	},
+	{
+		"index": "32",
+		"D-KBid": "statements20Formula2",
+		"type": "exception",
+		"antecedent": """
+			:enag_32 rdf:type :Rexist .
+			:enag_32 :not :eag_32 .
+			:eag_32 rdf:type :Authorize .
+			:eag_32 :has-agent :l_32 .
+			:eag_32 :has-object :egcp_29 . 
+			:l_32 rdf:type :EUorMSlaw .			
+		""",
+		"consequent": "29"
+	},
+	{
+		"index": "33",
+		"D-KBid": "statements20Formula2",
+		"type": "exception",
+		"antecedent": """
+			:enag_33 rdf:type :Rexist .
+			:enag_33 :not :eag_33 .
+			:eag_33 rdf:type :Authorize .
+			:eag_33 :has-agent :l_33 .
+			:eag_33 :has-object :egcp_30 . 
+			:l_33 rdf:type :EUorMSlaw .			
+		""",
+		"consequent": "30"
+	},
+	{
+		"index": "34",
+		"D-KBid": "statements20Formula2",
+		"type": "exception",
+		"antecedent": """
+			:enag_34 rdf:type :Rexist .
+			:enag_34 :not :eag_34 .
+			:eag_34 rdf:type :Authorize .
+			:eag_34 :has-agent :l_34 .
+			:eag_34 :has-object :egcp_31 . 
+			:l_34 rdf:type :EUorMSlaw .			
+		""",
+		"consequent": "31"
+	},
+	{
+		"index": "35",
+		"D-KBid": "statements17Formula2",
+		"type": "exception",
+		"antecedent": """
+			:w_26 :has-age 14 .
+		""",
+		"consequent": "29"
+	},	
+	{
+		"index": "36",
+		"D-KBid": "statements17Formula2",
+		"type": "exception",
+		"antecedent": """
+			:w_27 :has-age 14 .
+		""",
+		"consequent": "30"
+	},
+	{
+		"index": "37",
+		"D-KBid": "statements17Formula2",
+		"type": "exception",
+		"antecedent": """
+			:w_28 :has-age 14 .
+		""",
+		"consequent": "31"
+	},
+	{
+		"index": "38",
+		"D-KBid": "statements17Formula1",
+		"type": "exception",
+		"antecedent": """
+			:w_26 :has-member-state :ms_38 .
+			:ms_38 :has-minimal-age-for-consent 14 .
+		""",
+		"consequent": "35"
+	},
+	{
+		"index": "39",
+		"D-KBid": "statements17Formula1",
+		"type": "exception",
+		"antecedent": """
+			:w_27 :has-member-state :ms_39 .
+			:ms_39 :has-minimal-age-for-consent 14 .
+		""",
+		"consequent": "36"
+	},
+	{
+		"index": "40",
+		"D-KBid": "statements17Formula1",
+		"type": "exception",
+		"antecedent": """
+			:w_28 :has-member-state :ms_40 .
+			:ms_40 :has-minimal-age-for-consent 14 .
+		""",
+		"consequent": "37"
+	},	
+	{
+		"index": "41",
+		"D-KBid": "statements21Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfrw_41 rdf:type :Rexist .
+			:ebnfrw_41 rdf:type :BeNecessaryFor .
+			:ebnfrw_41 :has-agent :ep_26 .
+			:ebnfrw_41 :has-object :rw_41 .
+			:rw_41 rdf:type :Permitted .
+			:rw_41 :has-agent :w_26 .
+			:rw_41 :is-related-to :ss_41 . 
+			:ss_41 rdf:type :EmploymentAndSocialSecurityAndSocialProtectionLaw .
+			:l_41 rdf:type :EUorMSlaw . 
+			:eauthep_41 rdf:type :Rexist .
+			:eauthep_41 rdf:type :Authorize .
+			:eauthep_41 :has-object :ep_26 .
+			:eauthep_41 :has-agent :l_41 .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "42",
+		"D-KBid": "statements21Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfrw_42 rdf:type :Rexist .
+			:ebnfrw_42 rdf:type :BeNecessaryFor .
+			:ebnfrw_42 :has-agent :ep_27 .
+			:ebnfrw_42 :has-object :rw_42 .
+			:rw_42 rdf:type :Permitted .
+			:rw_42 :has-agent :w_27 .
+			:rw_42 :is-related-to :ss_42 . 
+			:ss_42 rdf:type :EmploymentAndSocialSecurityAndSocialProtectionLaw .
+			:l_42 rdf:type :EUorMSlaw . 
+			:eauthep_42 rdf:type :Rexist .
+			:eauthep_42 rdf:type :Authorize .
+			:eauthep_42 :has-object :ep_27 .
+			:eauthep_42 :has-agent :l_42 .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "43",
+		"D-KBid": "statements21Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfrw_43 rdf:type :Rexist .
+			:ebnfrw_43 rdf:type :BeNecessaryFor .
+			:ebnfrw_43 :has-agent :ep_28 .
+			:ebnfrw_43 :has-object :rw_43 .
+			:rw_43 rdf:type :Permitted .
+			:rw_43 :has-agent :w_28 .
+			:rw_43 :is-related-to :ss_43 . 
+			:ss_43 rdf:type :EmploymentAndSocialSecurityAndSocialProtectionLaw .
+			:l_43 rdf:type :EUorMSlaw . 
+			:eauthep_43 rdf:type :Rexist .
+			:eauthep_43 rdf:type :Authorize .
+			:eauthep_43 :has-object :ep_28 .
+			:eauthep_43 :has-agent :l_43 .
+		""",
+		"consequent": "28"
+	},	
+	{
+		"index": "44",
+		"D-KBid": "statements22Formula1",
+		"type": "exception",	
+		"antecedent": """
+			:ebnfpvids_44 rdf:type :Rexist .
+			:ebnfpvids_44 rdf:type :BeNecessaryFor .
+			:ebnfpvids_44 :has-agent :ep_26 .
+			:ebnfpvids_44 :has-object :pvids_44 .
+			:pvids_44 rdf:type :Protect .
+			:pvids_44 :has-object :vi_44 .
+			:vi_44 :vital-interest-of :w_26 .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "45",
+		"D-KBid": "statements22Formula1",
+		"type": "exception",	
+		"antecedent": """
+			:ebnfpvids_45 rdf:type :Rexist .
+			:ebnfpvids_45 rdf:type :BeNecessaryFor .
+			:ebnfpvids_45 :has-agent :ep_27 .
+			:ebnfpvids_45 :has-object :pvids_45 .
+			:pvids_45 rdf:type :Protect .
+			:pvids_45 :has-object :vi_45 .
+			:vi_45 :vital-interest-of :w_27 .
+		""",
+		"consequent":"27"	
+	},
+	{
+		"index": "46",
+		"D-KBid": "statements22Formula1",
+		"type": "exception",	
+		"antecedent": """
+			:ebnfpvids_46 rdf:type :Rexist .
+			:ebnfpvids_46 rdf:type :BeNecessaryFor .
+			:ebnfpvids_46 :has-agent :ep_28 .
+			:ebnfpvids_46 :has-object :pvids_46 .
+			:pvids_46 rdf:type :Protect .
+			:pvids_46 :has-object :vi_46 .
+			:vi_46 :vital-interest-of :w_28 .
+		""",
+		"consequent":"28"
+	},
+	{
+		"index": "47",
+		"D-KBid": "statements23Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfnfpb_47 rdf:type :Rexist .
+			:ebnfnfpb_47 rdf:type :BeNecessaryFor .
+			:ebnfnfpb_47 :has-agent :ep_26 .
+			:ebnfnfpb_47 :has-object :actnfpb_47 .
+			:actnfpb_47 :is-related-to :x_26 . 
+			:x_26 rdf:type :NotForProfitBody .
+			:w_26 :is-related-to :x_26 .
+			:enctok_47 rdf:type :Rexist .
+			:enctok_47 :not :ectok_47 .
+			:ectok_47 rdf:type :Communicate . 
+			:ectok_47 :has-agent :x_26 .
+			:ectok_47 :has-object :z_26 .
+			:ectok_47 :has-recipient :koutsidex_47 .
+			:koutsidex_47 :is-outside :x_26 .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "48",
+		"D-KBid": "statements23Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfnfpb_48 rdf:type :Rexist .
+			:ebnfnfpb_48 rdf:type :BeNecessaryFor .
+			:ebnfnfpb_48 :has-agent :ep_27 .
+			:ebnfnfpb_48 :has-object :actnfpb_48 .
+			:actnfpb_48 :is-related-to :x_27 . 
+			:x_27 rdf:type :NotForProfitBody .
+			:w_27 :is-related-to :x_27 .
+			:enctok_48 rdf:type :Rexist .
+			:enctok_48 :not :ectok_48 .
+			:ectok_48 rdf:type :Communicate . 
+			:ectok_48 :has-agent :x_27 .
+			:ectok_48 :has-object :z_27 .
+			:ectok_48 :has-recipient :koutsidex_48 .
+			:koutsidex_48 :is-outside :x_27 .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "49",
+		"D-KBid": "statements23Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfnfpb_49 rdf:type :Rexist .
+			:ebnfnfpb_49 rdf:type :BeNecessaryFor .
+			:ebnfnfpb_49 :has-agent :ep_28 .
+			:ebnfnfpb_49 :has-object :actnfpb_49 .
+			:actnfpb_49 :is-related-to :x_28 . 
+			:x_28 rdf:type :NotForProfitBody .
+			:w_28 :is-related-to :x_28 .
+			:enctok_49 rdf:type :Rexist .
+			:enctok_49 :not :ectok_49 .
+			:ectok_49 rdf:type :Communicate . 
+			:ectok_49 :has-agent :x_28 .
+			:ectok_49 :has-object :z_28 .
+			:ectok_49 :has-recipient :koutsidex_49 .
+			:koutsidex_49 :is-outside :x_28 .
+		""",
+		"consequent": "28"
+	},
+	{
+		"index": "50",
+		"D-KBid": "statements24Formula1",
+		"type": "exception",
+		"antecedent": """
+			:z_26 rdf:type :Public .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "51",
+		"D-KBid": "statements24Formula1",
+		"type": "exception",
+		"antecedent": """
+			:z_27 rdf:type :Public .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "52",
+		"D-KBid": "statements24Formula1",
+		"type": "exception",
+		"antecedent": """
+			:z_28 rdf:type :Public .
+		""",
+		"consequent": "28"
+	},
+	{
+		"index": "53",
+		"D-KBid": "statements25Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnflc_53 rdf:type :Rexist .
+			:ebnflc_53 rdf:type :BeNecessaryFor .
+			:ebnflc_53 :has-agent :ep_26 .
+			:ebnflc_53 :has-object :legclaim_53 .
+			:legclaim_53 rdf:type :LegalClaim .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "54",
+		"D-KBid": "statements25Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnflc_54 rdf:type :Rexist .
+			:ebnflc_54 rdf:type :BeNecessaryFor .
+			:ebnflc_54 :has-agent :ep_27 .
+			:ebnflc_54 :has-object :legclaim_54 .
+			:legclaim_54 rdf:type :LegalClaim .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "55",
+		"D-KBid": "statements25Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnflc_55 rdf:type :Rexist .
+			:ebnflc_55 rdf:type :BeNecessaryFor .
+			:ebnflc_55 :has-agent :ep_28 .
+			:ebnflc_55 :has-object :legclaim_55 .
+			:legclaim_55 rdf:type :LegalClaim .
+		""",
+		"consequent": "28"
+	},
+	{
+		"index": "56",
+		"D-KBid": "statements26Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnftrpi_56 rdf:type :Rexist .
+			:ebnftrpi_56 rdf:type :BeNecessaryFor .
+			:ebnftrpi_56 :has-agent :ep_26 .
+			:ebnftrpi_56 :has-object :trpi_56 .
+			:trpi_56 :is-related-to :pi_56 .
+			:pi_56 rdf:type :PublicInterest .
+			:trpi_56 :is-related-to :l_56 .
+			:l_56 rdf:type :EUorMSlaw .
+			:l_56 rdf:type :Reasonable .    
+			:esflrf1_56 rdf:type :Rexist .
+			:esflrf1_56 rdf:type :Safeguard .
+			:esflrf1_56 :has-agent :l_56 .
+			:esflrf1_56 :has-object :rf_56 .
+			:rf_56 :rights-and-freedoms-of :w_26 .
+			:esflrf2_56 rdf:type :Rexist .
+			:esflrf2_56 rdf:type :Safeguard .
+			:esflrf2_56 :has-agent :l_56 .
+			:esflrf2_56 :has-object :liw_56 .
+			:liw_56 :legitimate-interest-of :w_26 .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "57",
+		"D-KBid": "statements26Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnftrpi_57 rdf:type :Rexist .
+			:ebnftrpi_57 rdf:type :BeNecessaryFor .
+			:ebnftrpi_57 :has-agent :ep_27 .
+			:ebnftrpi_57 :has-object :trpi_57 .
+			:trpi_57 :is-related-to :pi_57 .
+			:pi_57 rdf:type :PublicInterest .
+			:trpi_57 :is-related-to :l_57 .
+			:l_57 rdf:type :EUorMSlaw .
+			:l_57 rdf:type :Reasonable .    
+			:esflrf1_57 rdf:type :Rexist .
+			:esflrf1_57 rdf:type :Safeguard .
+			:esflrf1_57 :has-agent :l_57 .
+			:esflrf1_57 :has-object :rf_57 .
+			:rf_57 :rights-and-freedoms-of :w_27 .
+			:esflrf2_57 rdf:type :Rexist .
+			:esflrf2_57 rdf:type :Safeguard .
+			:esflrf2_57 :has-agent :l_57 .
+			:esflrf2_57 :has-object :liw_57 .
+			:liw_57 :legitimate-interest-of :w_27 .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "58",
+		"D-KBid": "statements26Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnftrpi_58 rdf:type :Rexist .
+			:ebnftrpi_58 rdf:type :BeNecessaryFor .
+			:ebnftrpi_58 :has-agent :ep_28 .
+			:ebnftrpi_58 :has-object :trpi_58 .
+			:trpi_58 :is-related-to :pi_58 .
+			:pi_58 rdf:type :PublicInterest .
+			:trpi_58 :is-related-to :l_58 .
+			:l_58 rdf:type :EUorMSlaw .
+			:l_58 rdf:type :Reasonable .    
+			:esflrf1_58 rdf:type :Rexist .
+			:esflrf1_58 rdf:type :Safeguard .
+			:esflrf1_58 :has-agent :l_58 .
+			:esflrf1_58 :has-object :rf_58 .
+			:rf_58 :rights-and-freedoms-of :w_28 .
+			:esflrf2_58 rdf:type :Rexist .
+			:esflrf2_58 rdf:type :Safeguard .
+			:esflrf2_58 :has-agent :l_58 .
+			:esflrf2_58 :has-object :liw_58 .
+			:liw_58 :legitimate-interest-of :w_28 .
+		""",
+		"consequent": "28"
+	},
+	{
+		"index": "59",
+		"D-KBid": "statements27Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfeth_59 rdf:type :Rexist .
+			:ebnfeth_59 rdf:type :BeNecessaryFor .
+			:ebnfeth_59 :has-agent :ep_26 .
+			:ebnfeth_59 :has-object :eth_59 .
+			:eth_59 rdf:type :Execute .
+			:eth_59 :has-object :th_59 .
+			:th_59 :is-related-to :health_59 .
+			:health_59 rdf:type :Health .
+			:eauth_59 rdf:type :Rexist .
+			:eauth_59 rdf:type :Authorize .
+			:eauth_59 :has-agent :l_59 .
+			:eauth_59 :has-object :th_59 .
+			:l_59 rdf:type :EUorMSlaw .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "60",
+		"D-KBid": "statements27Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfeth_60 rdf:type :Rexist .
+			:ebnfeth_60 rdf:type :BeNecessaryFor .
+			:ebnfeth_60 :has-agent :ep_27 .
+			:ebnfeth_60 :has-object :eth_60 .
+			:eth_60 rdf:type :Execute .
+			:eth_60 :has-object :th_60 .
+			:th_60 :is-related-to :health_60 .
+			:health_60 rdf:type :Health .
+			:eauth_60 rdf:type :Rexist .
+			:eauth_60 rdf:type :Authorize .
+			:eauth_60 :has-agent :l_60 .
+			:eauth_60 :has-object :th_60 .
+			:l_60 rdf:type :EUorMSlaw .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "61",
+		"D-KBid": "statements27Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfeth_61 rdf:type :Rexist .
+			:ebnfeth_61 rdf:type :BeNecessaryFor .
+			:ebnfeth_61 :has-agent :ep_28 .
+			:ebnfeth_61 :has-object :eth_61 .
+			:eth_61 rdf:type :Execute .
+			:eth_61 :has-object :th_61 .
+			:th_61 :is-related-to :health_61 .
+			:health_61 rdf:type :Health .
+			:eauth_61 rdf:type :Rexist .
+			:eauth_61 rdf:type :Authorize .
+			:eauth_61 :has-agent :l_61 .
+			:eauth_61 :has-object :th_61 .
+			:l_61 rdf:type :EUorMSlaw .
+		""",
+		"consequent": "28"
+	},	
+	{
+		"index": "62",
+		"D-KBid": "statements28Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfetpi_62 rdf:type :Rexist .
+			:ebnfetpi_62 rdf:type :BeNecessaryFor .
+			:ebnfetpi_62 :has-agent :ep_26 .
+			:ebnfetpi_62 :has-object :extpi_62 .
+			:extpi_62 rdf:type :Execute .
+			:extpi_62 :has-object :tpi_62 .
+			:tpi_62 :is-related-to :pi_62 .
+			:pi_62 rdf:type :PublicInterest .
+			:pi_62 :is-related-to :health_62 .
+			:health_62 rdf:type :Health .
+			:eautpi_62 rdf:type :Rexist .
+			:eautpi_62 rdf:type :Authorize .
+			:eautpi_62 :has-agent :l_62 .
+			:eautpi_62 :has-object :tpi_62 .
+			:l_62 rdf:type :EUorMSlaw .
+			:esflrf1_62 rdf:type :Rexist .
+			:esflrf1_62 rdf:type :Safeguard .
+			:esflrf1_62 :has-agent :l_62 .
+			:esflrf1_62 :has-object :rf_62 .
+			:rf_62 :rights-and-freedoms-of :w_26 .
+		""",
+		"consequent": "26"
+	},
+	{
+		"index": "63",
+		"D-KBid": "statements28Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfetpi_63 rdf:type :Rexist .
+			:ebnfetpi_63 rdf:type :BeNecessaryFor .
+			:ebnfetpi_63 :has-agent :ep_27 .
+			:ebnfetpi_63 :has-object :extpi_63 .
+			:extpi_63 rdf:type :Execute .
+			:extpi_63 :has-object :tpi_63 .
+			:tpi_63 :is-related-to :pi_63 .
+			:pi_63 rdf:type :PublicInterest .
+			:pi_63 :is-related-to :health_63 .
+			:health_63 rdf:type :Health .
+			:eautpi_63 rdf:type :Rexist .
+			:eautpi_63 rdf:type :Authorize .
+			:eautpi_63 :has-agent :l_63 .
+			:eautpi_63 :has-object :tpi_63 .
+			:l_63 rdf:type :EUorMSlaw .
+			:esflrf1_63 rdf:type :Rexist .
+			:esflrf1_63 rdf:type :Safeguard .
+			:esflrf1_63 :has-agent :l_63 .
+			:esflrf1_63 :has-object :rf_63 .
+			:rf_63 :rights-and-freedoms-of :w_27 .
+		""",
+		"consequent": "27"
+	},
+	{
+		"index": "64",
+		"D-KBid": "statements28Formula1",
+		"type": "exception",
+		"antecedent": """
+			:ebnfetpi_64 rdf:type :Rexist .
+			:ebnfetpi_64 rdf:type :BeNecessaryFor .
+			:ebnfetpi_64 :has-agent :ep_28 .
+			:ebnfetpi_64 :has-object :extpi_64 .
+			:extpi_64 rdf:type :Execute .
+			:extpi_64 :has-object :tpi_64 .
+			:tpi_64 :is-related-to :pi_64 .
+			:pi_64 rdf:type :PublicInterest .
+			:pi_64 :is-related-to :health_64 .
+			:health_64 rdf:type :Health .
+			:eautpi_64 rdf:type :Rexist .
+			:eautpi_64 rdf:type :Authorize .
+			:eautpi_64 :has-agent :l_64 .
+			:eautpi_64 :has-object :tpi_64 .
+			:l_64 rdf:type :EUorMSlaw .
+			:esflrf1_64 rdf:type :Rexist .
+			:esflrf1_64 rdf:type :Safeguard .
+			:esflrf1_64 :has-agent :l_64 .
+			:esflrf1_64 :has-object :rf_64 .
+			:rf_64 :rights-and-freedoms-of :w_28 .
+		""",
+		"consequent": "28"
+	},	
+	{
+		"index": "65",
+		"D-KBid": "statements29Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_65 rdf:type :DataSubject .
+			:z_65 :personaldata-of :w_65 .
+			:y_65 :controller-of :z_65 .
+			:x_65 rdf:type :Processor .
+			:edp_65 rdf:type :Rexist .
+			:edp_65 rdf:type :Nominates .
+			:edp_65 :has-time :t1 .
+			:edp_65 :has-agent :y_65 .
+			:edp_65 :has-object :x_65 .
+			:ep_65 rdf:type :Rexist .
+			:ep_65 rdf:type :ProcessPersonalData .
+			:ep_65 :has-time :t1 .
+			:ep_65 :has-agent :x_65 .
+			:ep_65 :has-object :z_65 .
+			:epup_65 rdf:type :Purpose .
+			:ep_65 :is-based-on :epup_65 .
+			:ep_65 :is-related-to :crime_65 .
+			:crime_65 rdf:type :Crime .
+		""",
+		"consequent": """
+			:eiscoa_65 rdf:type :Rexist .
+			:eiscoa_65 rdf:type :MakeControlledOrAuthorized .
+			:eiscoa_65 :has-time :t_including_t1 .
+			:eiscoa_65 :has-agent :y_65 .
+			:eiscoa_65 :has-object :ep_65 .
+		"""
+	},
+	{
+		"index": "66",
+		"D-KBid": "statements29Formula1-disjunction",
+		"type": "constitutive",
+		"antecedent": """
+			:eoac_66 rdf:type :Rexist .
+			:eoac_66 rdf:type :Control .
+			:eoac_66 :has-agent :oa_66 .
+			:eoac_66 :has-object :ep_65 .
+			:eoac_66 :has-time :t1 .
+			:oa_66 rdf:type :OfficialAuthority .
+		""",
+		"consequent": "65"
+	},	
+	{
+		"index": "67",
+		"D-KBid": "statements29Formula2",
+		"type": "regulative",
+		"antecedent": """
+			:w_67 rdf:type :DataSubject .
+			:z_67 :personaldata-of :w_67 .
+			:y_67 :controller-of :z_67 .
+			:x_67 rdf:type :Processor .
+			:edp_67 rdf:type :Rexist .
+			:edp_67 rdf:type :Nominates .
+			:edp_67 :has-time :t1 .
+			:edp_67 :has-agent :y_67 .
+			:edp_67 :has-object :x_67 .
+			:ep_67 rdf:type :Rexist .
+			:ep_67 rdf:type :ProcessPersonalData .
+			:ep_67 :has-time :t1 .
+			:ep_67 :has-agent :x_67 .
+			:ep_67 :has-object :z_67 .
+			:epup_67 rdf:type :Purpose .
+			:ep_67 :is-based-on :epup_67 .
+			:ep_67 :is-related-to :crime_67 .
+			:crime_67 rdf:type :Crime .
+			:estrt1_67 rdf:type :Rexist .
+			:estrt1_67 rdf:type :Store .
+			:estrt1_67 :has-time :t1 .
+			:estrt1_67 :has-agent :x_67 .
+			:estrt1_67 :has-object :z_67 .
+			:estrt1_67 :has-location :pdr_67 .
+			:pdr_67 rdf:type :PersonalDataRecord .
+		""",
+		"consequent": """
+			:ectrloa_67 rdf:type :Rexist .
+			:ectrloa_67 rdf:type :Control .
+			:ectrloa_67 :has-agent :police_67 .
+			:police_67 rdf:type :OfficialAuthority .
+			:ectrloa_67 :has-object :pdr_67 .
+			:ectrloa_67 :has-time :t1 .
+		"""
+	},
+	{
+		"index": "68",
+		"D-KBid": "statements30Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_68 rdf:type :DataSubject .
+			:z_68 :personaldata-of :w_68 .
+			:y_68 :controller-of :z_68 .
+			:x_68 rdf:type :Processor .
+			:edp_68 rdf:type :Rexist .
+			:edp_68 rdf:type :Nominates .
+			:edp_68 :has-time :t1 .
+			:edp_68 :has-agent :y_68 .
+			:edp_68 :has-object :x_68 .
+			:ep_68 rdf:type :Rexist .
+			:ep_68 rdf:type :ProcessPersonalData .
+			:ep_68 :has-time :t1 .
+			:ep_68 :has-agent :x_68 .
+			:ep_68 :has-object :z_68 .
+			:epup_68 rdf:type :Purpose .
+			:ep_68 :is-based-on :epup_68 .
+			:enbnfidw_68 rdf:type :Rexist .
+			:enbnfidw_68 :not :ebnfidw_68 .
+			:ebnfidw_68 rdf:type :BeNecessaryFor .
+			:ebnfidw_68 :has-agent :eidw_68 .
+			:ebnfidw_68 :has-object :epup_68 .
+			:eidw_68 rdf:type :Identify .
+			:eidw_68 :has-object :w_68 .
+			:infw_68 :information-about :w_68 .
+		""",
+		"consequent": """
+			:esa_68 rdf:type :Rexist .
+			:esa_68 rdf:type :Store .
+			:esa_68 :has-agent :y_68 .
+			:esa_68 :has-object :infw_68 .
+			:esa_68 :has-aim :eidw_68 .
+			:epa_68 rdf:type :Rexist .
+			:epa_68 rdf:type :ProcessPersonalData .
+			:epa_68 :has-agent :y_68 .
+			:epa_68 :has-object :infw_68 .
+			:epa_68 :has-aim :eidw_68 .
+			:eca_68 rdf:type :Rexist .
+			:eca_68 rdf:type :CollectPersonalData .
+			:eca_68 :has-agent :y_68 .
+			:eca_68 :has-object :infw_68 .
+			:eca_68 :has-aim :eidw_68 .
+		"""
+	},
+	{
+		"index": "69",
+		"D-KBid": "statements31Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_69 rdf:type :DataSubject .
+			:z_69 :personaldata-of :w_69 .
+			:y_69 :controller-of :z_69 .
+			:x_69 rdf:type :Processor .
+			:edp_69 rdf:type :Rexist .
+			:edp_69 rdf:type :Nominates .
+			:edp_69 :has-time :t1 .
+			:edp_69 :has-agent :y_69 .
+			:edp_69 :has-object :x_69 .
+			:ep_69 rdf:type :Rexist .
+			:ep_69 rdf:type :ProcessPersonalData .
+			:ep_69 :has-time :t1 .
+			:ep_69 :has-agent :x_69 .
+			:ep_69 :has-object :z_69 .
+			:epup_69 rdf:type :Purpose .
+			:ep_69 :is-based-on :epup_69 .
+			:enbnfidw_69 rdf:type :Rexist .
+			:enbnfidw_69 :not :ebnfidw_69 .
+			:ebnfidw_69 rdf:type :BeNecessaryFor .
+			:ebnfidw_69 :has-time :t1 .
+			:ebnfidw_69 :has-agent :eidw_69 .
+			:ebnfidw_69 :has-object :epup_69 .
+			:eidw_69 rdf:type :Identify .
+			:eidw_69 :has-object :w_69 .
+			:ednaiw_69 rdf:type :Rexist .
+			:ednaiw_69 rdf:type :Demonstrate .
+			:ednaiw_69 :has-time :t1 .
+			:ednaiw_69 :has-agent :y_69 .
+			:ednaiw_69 :has-object :enaiw_69 .
+			:enaiw_69 rdf:type :Eventuality .
+			:enaiw_69 :not :eaiw_69 .
+			:eaiw_69 rdf:type :BeAbleTo .
+			:eaiw_69 :has-time :t1 .
+			:eaiw_69 :has-agent :y_69 .
+			:eaiw_69 :has-object :eidw_69 .
+		""",
+		"consequent": """
+			:ecnaiw_69 rdf:type :Communicate .
+			:ecnaiw_69 :has-agent :y_69 .
+			:ecnaiw_69 :has-object :enaiw_69 .
+			:ecnaiw_69 :has-recipient :w_69 .
+			:ecnaiw_69 :has-time :t_10minutes_after_t1 .
+		"""
+	},	
+	{
+		"index": "70",
+		"D-KBid": "statements108Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_70 rdf:type :DataSubject .
+			:z_70 :personaldata-of :w_70 .
+			:y_70 :controller-of :z_70 .
+			:x_70 rdf:type :Processor .
+			:edp_70 rdf:type :Rexist .
+			:edp_70 rdf:type :Nominates .
+			:edp_70 :has-time :t1 .
+			:edp_70 :has-agent :y_70 .
+			:edp_70 :has-object :x_70 .
+			:ep_70 rdf:type :Rexist .
+			:ep_70 rdf:type :ProcessPersonalData .
+			:ep_70 :has-time :t1 .
+			:ep_70 :has-agent :x_70 .
+			:ep_70 :has-object :z_70 .
+			:epup_70 rdf:type :Purpose .
+			:ep_70 :is-based-on :epup_70 .
+			:ebnfetpi_70 rdf:type :Rexist .
+			:ebnfetpi_70 rdf:type :BeNecessaryFor .
+			:ebnfetpi_70 :has-agent :ep_70 .
+			:ebnfetpi_70 :has-object :extpi_70 .
+			:extpi_70 rdf:type :Execute .
+			:extpi_70 :has-object :tpi_70 .
+			:tpi_70 :is-related-to :pi_70 .
+			:pi_70 rdf:type :PublicInterest .
+		""",
+		"consequent": """
+			:eobjep_70 rdf:type :Rexist .
+			:eobjep_70 rdf:type :Object .
+			:eobjep_70 :has-time :t_instant_inside_t1 .
+			:eobjep_70 :has-agent :w_70 .
+			:eobjep_70 :has-object :ep_70 .
+		"""
+	},
+	{
+		"index": "71",
+		"D-KBid": "statements108Formula2",
+		"type": "regulative",
+		"antecedent": """
+			:w_71 rdf:type :DataSubject .
+			:z_71 :personaldata-of :w_71 .
+			:y_71 :controller-of :z_71 .
+			:x_71 rdf:type :Processor .
+			:edp_71 rdf:type :Rexist .
+			:edp_71 rdf:type :Nominates .
+			:edp_71 :has-time :t1 .
+			:edp_71 :has-agent :y_71 .
+			:edp_71 :has-object :x_71 .
+			:ep_71 rdf:type :Rexist .
+			:ep_71 rdf:type :ProcessPersonalData .
+			:ep_71 :has-time :t1 .
+			:ep_71 :has-agent :x_71 .
+			:ep_71 :has-object :z_71 .
+			:epup_71 rdf:type :Purpose .
+			:ep_71 :is-based-on :epup_71 .
+			:ebnfliy_71 rdf:type :Rexist .
+			:ebnfliy_71 rdf:type :BeNecessaryFor .
+			:ebnfliy_71 :has-agent :ep_71 .
+			:ebnfliy_71 :has-object :liy_71 .
+			:liy_71 :legitimate-interest-of :y_71 .
+			<<:ep_71 :causes :riskforrf_71>> rdf:type :false .
+			:riskforrf_71 :is-risk-for :rf_71 .
+			:rf_71 :rights-and-freedoms-of :w_71 .
+		""",
+		"consequent": """
+			:eobjep_71 rdf:type :Rexist .
+			:eobjep_71 rdf:type :Object .
+			:eobjep_71 :has-time :t_instant_inside_t1 .
+			:eobjep_71 :has-agent :w_71 .
+			:eobjep_71 :has-object :ep_71 .
+		"""
+	},
+	{
+		"index": "72",
+		"D-KBid": "statements108Formula3",
+		"type": "regulative",
+		"antecedent": """
+			:w_72 rdf:type :DataSubject .
+			:z_72 :personaldata-of :w_72 .
+			:y_72 :controller-of :z_72 .
+			:x_72 rdf:type :Processor .
+			:edp_72 rdf:type :Rexist .
+			:edp_72 rdf:type :Nominates .
+			:edp_72 :has-time :t1 .
+			:edp_72 :has-agent :y_72 .
+			:edp_72 :has-object :x_72 .
+			:ep_72 rdf:type :Rexist .
+			:ep_72 rdf:type :ProcessPersonalData .
+			:ep_72 :has-time :t1 .
+			:ep_72 :has-agent :x_72 .
+			:ep_72 :has-object :z_72 .
+			:epup_72 rdf:type :Purpose .
+			:ep_72 :is-based-on :epup_72 .
+			:ebnfexpb_72 rdf:type :Rexist .
+			:ebnfexpb_72 rdf:type :BeNecessaryFor .
+			:ebnfexpb_72 :has-agent :ep_72 .
+			:ebnfexpb_72 :has-object :expb_72 .
+			:expb_72 rdf:type :Execute .
+			:expb_72 :has-agent :pb_72 .
+			:expb_72 :has-object :tpb_72 .
+			:pb_72 rdf:type :Public_Body .
+		""",
+		"consequent": """
+			:eobjep_72 rdf:type :Rexist .
+			:eobjep_72 rdf:type :Object .
+			:eobjep_72 :has-time :t_instant_inside_t1 .
+			:eobjep_72 :has-agent :w_72 .
+			:eobjep_72 :has-object :ep_72 .
+		"""
+	},
+	{
+		"index": "73",
+		"D-KBid": "statements108Formula4/statements108Formula5/statements108Formula6",
+		"type": "exception",
+		"antecedent": """
+			:ewdr_73 rdf:type :Rexist .
+			:ewdr_73 rdf:type :Object .
+			:ewdr_73 :has-time :t_instant_inside_t1 .
+			:ewdr_73 :has-agent :w_1 .
+			:ewdr_73 :has-object :ep_1 .
+		""",
+		"consequent": "13"
+	},
+	{
+		"index": "74",
+		"D-KBid": "statements108Formula4/statements108Formula5/statements108Formula6",
+		"type": "exception",
+		"antecedent": """
+			:ewdr_74 rdf:type :Rexist .
+			:ewdr_74 rdf:type :Object .
+			:ewdr_74 :has-time :t_instant_inside_t1 .
+			:ewdr_74 :has-agent :w_1 .
+			:ewdr_74 :has-object :ep_1 .
+		""",
+		"consequent": "14"
+	},
+	{
+		"index": "75",
+		"D-KBid": "statements108Formula4/statements108Formula5/statements108Formula6",
+		"type": "exception",
+		"antecedent": """
+			:ewdr_75 rdf:type :Rexist .
+			:ewdr_75 rdf:type :Object .
+			:ewdr_75 :has-time :t_instant_inside_t1 .
+			:ewdr_75 :has-agent :w_1 .
+			:ewdr_75 :has-object :ep_1 .
+		""",
+		"consequent": "15"
+	},
+	{
+		"index": "76",
+		"D-KBid": "statements108Formula7/statements108Formula8/statements108Formula9",
+		"type": "exception",
+		"antecedent": """
+			:ep_1 :is-related-to :legclaim_76 .
+			:legclaim_76 rdf:type :LegalClaim .
+		""",
+		"consequent": "73"
+	},
+	{
+		"index": "77",
+		"D-KBid": "statements108Formula7/statements108Formula8/statements108Formula9",
+		"type": "exception",
+		"antecedent": """
+			:ep_1 :is-related-to :legclaim_77 .
+			:legclaim_77 rdf:type :LegalClaim .
+		""",
+		"consequent": "74"
+	},
+	{
+		"index": "78",
+		"D-KBid": "statements108Formula7/statements108Formula8/statements108Formula9",
+		"type": "exception",
+		"antecedent": """
+			:ep_1 :is-related-to :legclaim_78 .
+			:legclaim_78 rdf:type :LegalClaim .
+		""",
+		"consequent": "75"
+	},
+	{
+		"index": "79",
+		"D-KBid": "statements275Formula1",
+		"type": "regulative",
+		"antecedent": """
+			:w_79 rdf:type :DataSubject .
+			:z_79 :personaldata-of :w_79 .
+			:y_79 :controller-of :z_79 .
+			:x_79 rdf:type :Processor .
+			:edp_79 rdf:type :Rexist .
+			:edp_79 rdf:type :Nominates .
+			:edp_79 :has-time :t1 .
+			:edp_79 :has-agent :y_79 .
+			:edp_79 :has-object :x_79 .
+			:ep_79 rdf:type :Rexist .
+			:ep_79 rdf:type :ProcessPersonalData .
+			:ep_79 :has-time :t1 .
+			:ep_79 :has-agent :x_79 .
+			:ep_79 :has-object :z_79 .
+			:epup_79 rdf:type :Purpose .
+			:ep_79 :is-based-on :epup_79 .
+			:epup_79 rdf:type :PublicInterest .
+			:m_79 rdf:type :Measure .
+			:m_79 :cause :ep_79 .
+			:m_79 :cause :enid_79 .
+			:enid_79 :not :eid_79 .
+			:enid_79 rdf:type :Eventuality .
+			:eid_79 rdf:type :Identify .
+			:eid_79 :has-object :w_79 .
+			:rf_79 :rights-and-freedoms-of :w_79 .
+		""",
+		"consequent": """
+			:esfrf_79 rdf:type :Rexist .
+			:esfrf_79 rdf:type :Safeguard .
+			:esfrf_79 :has-agent :x_79 .
+			:esfrf_79 :has-object :rf_79 .
+			:esfrf_79 :has-time :t_including_t1 .
+		"""
+	},
+	{
+		"index": "80",
+		"D-KBid": "statements275Formula2",
+		"type": "regulative",
+		"antecedent": """
+			:w_80 rdf:type :DataSubject .
+			:z_80 :personaldata-of :w_80 .
+			:y_80 :controller-of :z_80 .
+			:x_80 rdf:type :Processor .
+			:edp_80 rdf:type :Rexist .
+			:edp_80 rdf:type :Nominates .
+			:edp_80 :has-time :t1 .
+			:edp_80 :has-agent :y_80 .
+			:edp_80 :has-object :x_80 .
+			:ep_80 rdf:type :Rexist .
+			:ep_80 rdf:type :ProcessPersonalData .
+			:ep_80 :has-time :t1 .
+			:ep_80 :has-agent :x_80 .
+			:ep_80 :has-object :z_80 .
+			:epup_80 rdf:type :Purpose .
+			:ep_80 :is-based-on :epup_80 .
+			:epup_80 rdf:type :PublicInterest .
+			:m_80 rdf:type :Measure .
+			:m_80 :cause :ep_80 .
+			:m_80 :cause :enid_80 .
+			:enid_80 :not :eid_80 .
+			:enid_80 rdf:type :Eventuality .
+			:eid_80 rdf:type :Identify .
+			:eid_80 :has-object :w_80 .
+			:rf_80 :rights-and-freedoms-of :w_80 .
+		""",
+		"consequent": """
+			:eimp_80 rdf:type :Rexist .
+			:eimp_80 rdf:type :Implement .
+			:eimp_80 :has-agent :x_80 .
+			:eimp_80 :has-object :m_80 .
+			:eimp_80 :has-time :t_including_t1 .
+		"""
+	},	
+	{
+		"index": "81",
+		"D-KBid": "statements275Formula3",
+		"type": "exception",
+		"antecedent": """
+			:epup_7 rdf:type :PublicInterest .		
+			:ec_81 rdf:type :Rexist .
+			:ec_81 rdf:type :CollectPersonalData .
+			:ec_81 :has-time :t2 .
+			:ec_81 :has-agent :x_7 . 
+			:ec_81 :has-object :z_7 .
+			:epuc_81 rdf:type :Purpose .
+			:ec_81 :is-based-on :epuc_81 .
+		""",
+		"consequent": "7"
+	},
+	{
+		"IntervalsAndInstants": """
+			:t1 rdf:type time:Interval; time:hasBeginning :t1b; time:hasEnd :t1e.
+			:t1b rdf:type time:Instant; time:inXSDDateTime "2026-01-01T17:00:00Z"^^xsd:dateTime.
+			:t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-01T18:00:00Z"^^xsd:dateTime.
+			:t2 rdf:type time:Interval; time:hasBeginning :t2b; time:hasEnd :t2e.
+			:t2b rdf:type time:Instant; time:inXSDDateTime "2025-12-31T10:00:00Z"^^xsd:dateTime.
+			:t2e rdf:type time:Instant; time:inXSDDateTime "2025-12-31T20:00:00Z"^^xsd:dateTime.
+			:t_anytime_before_t1 rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd :t1b.
+			:t_anytime_before_t2 rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd :t2b.
+			:mi rdf:type time:Instant. 
+			:t_including_t1 rdf:type time:Interval; time:hasBeginning :t_including_t1b; time:hasEnd :t_including_t1e.
+			:t_including_t1b rdf:type time:Instant; time:inXSDDateTime "2026-01-01T16:00:00Z"^^xsd:dateTime.  
+			:t_including_t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-01T19:00:00Z"^^xsd:dateTime.
+			:t_including_t2 rdf:type time:Interval; time:hasBeginning :t_including_t2b; time:hasEnd :t_including_t2e.
+			:t_including_t2b rdf:type time:Instant; time:inXSDDateTime "2025-11-01T16:00:00Z"^^xsd:dateTime.  
+			:t_including_t2e rdf:type time:Instant; time:inXSDDateTime "2025-12-31T21:00:00Z"^^xsd:dateTime.
+			:t_instant_inside_t1 rdf:type time:Instant; time:inXSDDateTime "2026-01-01T17:30:00Z\"^^xsd:dateTime.
+			:t_before_t1 rdf:type time:Instant; time:inXSDDateTime "2026-01-01T16:00:00Z"^^xsd:dateTime.
+			:t_before_t2 rdf:type time:Instant; time:inXSDDateTime "2025-12-30T16:00:00Z"^^xsd:dateTime.
+			:t_10minutes_after_t1 rdf:type time:Instant; time:inXSDDateTime "2026-01-01T18:10:00Z"^^xsd:dateTime.
+			:t_after_t1 rdf:type time:Interval; time:hasBeginning :t1e; time:hasEnd :t_after_t1e.
+			:t_after_t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-05T18:00:00Z"^^xsd:dateTime.
+			:t_including_t_after_t1 rdf:type time:Interval; time:hasBeginning :t1b; time:hasEnd :t_including_t_after_t1e.
+			:t_including_t_after_t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-05T22:00:00Z"^^xsd:dateTime.
+		"""
+	}
+]}

@@ -1,0 +1,20 @@
+PREFIX :     <https://w3id.org/ontology/dlr#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+:epjo   rdf:type     :Active , :Obligatory , :Eventuality , :A-Obligatory , :Pay;
+        :has-agent   :John;
+        :has-object  :rent .
+
+:rent   :rent-of  :John .
+
+:epj    rdf:type         :Active , :Eventuality , :Rexist , :Pay;
+        :complies-with   :epjo;
+        :has-agent       :John;
+        :has-instrument  :card;
+        :has-object      :rent;
+        :has-time        [ rdf:type            time:Interval;
+                           time:inXSDDateTime  "2025-01-01T15:15:00Z"^^xsd:dateTime
+                         ] .

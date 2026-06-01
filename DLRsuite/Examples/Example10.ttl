@@ -1,0 +1,55 @@
+@prefix : <https://w3id.org/ontology/dlr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://w3id.org/ontology/dlr#> .
+
+
+#######################################################################################################################################################################
+# Description:
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Article 5(1)(a) of the GDPR states that the processing of personal data must be lawful (as well as fair and transparent, although here we only focus on lawfulness).
+# Article 6(1)(c) of the GDPR states that processing is lawful if it is necessary for compliance with a legal obligation to which the controller is subject.
+# This gives rise to a nested obligation. The scenario includes the following facts:
+# - John is a data processor appointed by Bill, the data controller for Jack's personal data, from 5 p.m. to 6 p.m. UTC on 1 January 2025.
+# - Bill is obliged to submit a report to the EDPB, and processing Jack's personal data is necessary to fulfil this legal obligation.
+# - John processes Jack's personal data, and this processing is inferred to be lawful, thereby complying with Article 5(1)(a).
+#######################################################################################################################################################################
+
+#######################################################################################################################################################################
+# Input facts:
+#######################################################################################################################################################################
+
+#John is a data processor appointed by Bill, the data controller for Jack's personal data, from 5 p.m. to 6 p.m. UTC on 1 January 2025.
+:John rdf:type :Processor. :Jack rdf:type :DataSubject. :Bill :controller-of :JackPD. :JackPD :personaldata-of :Jack.
+[rdf:type :Rexist,:Nominates; :has-time :t1; :has-agent :Bill; :has-object :John].
+:t1 time:hasBeginning [time:inXSDDateTime "2025-01-01T17:00:00Z"^^xsd:dateTime]; time:hasEnd [time:inXSDDateTime "2025-01-01T18:00:00Z"^^xsd:dateTime].
+
+#Bill is obliged to submit a report to the EDPB, and processing Jack's personal data is necessary to fulfil this legal obligation.
+[rdf:type :Rexist,:BeNecessaryFor;
+	:has-agent :ep;
+	:has-object [rdf:type :A-Obligatory,:Submit; :has-agent :Bill; :has-object :report; :has-recipient :EDPB]].
+:ep rdf:type :ProcessPersonalData; :has-time :t1; :has-agent :John; :has-object :JackPD.
+
+#John processes Jack's personal data.
+:ep rdf:type :Rexist.
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# The following rule implements the GDPR norms mentioned above.
+# NB: these rules are *copied* from the file DKBrules.ttl. We avoid loading the entire D-KB, as the state of affairs above would otherwise trigger many additional
+# obligations, prohibitions, and permissions. Here, we are only interested in checking compliance with the achievement obligation triggered by the rule below.
+
+#D-KB ID: statements1Formula1 (gdprC2A5P1p1ref)
+#DESCRIPTION: If ?x is processing ?w's personal data during the interval ?t1 (and this data is controlled by ?y, who nominated ?x), then ?x is obliged to keep the processing lawful, fair, and transparent throughout the entire interval ?t1.
+[rdf:type :InferenceRule; :has-dkb-id "statements1Formula1"^^xsd:string; :has-sparql-code """
+	CONSTRUCT{?el rdf:type :M-Obligatory. ?el :has-time ?t1. ?el rdf:type :Keep. ?el :has-agent ?x. ?el :has-object ?ep. ?el :has-object-state :lawful. ?ef rdf:type :M-Obligatory. ?ef :has-time ?t1. ?ef rdf:type :Keep. ?ef :has-agent ?x. ?ef :has-object ?ep. ?ef :has-object-state :fair. ?et rdf:type :M-Obligatory. ?et :has-time ?t1. ?et rdf:type :Keep. ?et :has-agent ?x. ?et :has-object ?ep. ?et :has-object-state :transparent. ?ef :has-generating-dkb-rule-id "statements1Formula1"^^xsd:string. ?el :has-generating-dkb-rule-id "statements1Formula1"^^xsd:string. ?et :has-generating-dkb-rule-id "statements1Formula1"^^xsd:string.}
+	WHERE{?w rdf:type :DataSubject. ?z :personaldata-of ?w. ?y :controller-of ?z. ?x rdf:type :Processor. ?edp rdf:type :Rexist. ?edp rdf:type :Nominates. ?edp :has-time ?t1. ?edp :has-agent ?y. ?edp :has-object ?x. ?ep rdf:type :Rexist. ?ep rdf:type :ProcessPersonalData. ?ep :has-time ?t1. ?ep :has-agent ?x. ?ep :has-object ?z. BIND(BNode() AS ?ef) BIND(BNode() AS ?el) BIND(BNode() AS ?et) NOT EXISTS{?elr rdf:type :M-Obligatory. ?elr :has-time ?t1. ?elr rdf:type :Keep. ?elr :has-agent ?x. ?elr :has-object ?ep. ?elr :has-object-state :lawful. ?efr rdf:type :M-Obligatory. ?efr :has-time ?t1. ?efr rdf:type :Keep. ?efr :has-agent ?x. ?efr :has-object ?ep. ?efr :has-object-state :fair. ?etr rdf:type :M-Obligatory. ?etr :has-time ?t1. ?etr rdf:type :Keep. ?etr :has-agent ?x. ?etr :has-object ?ep. ?etr :has-object-state :transparent. ?efr :has-generating-dkb-rule-id "statements1Formula1"^^xsd:string. ?elr :has-generating-dkb-rule-id "statements1Formula1"^^xsd:string. ?etr :has-generating-dkb-rule-id "statements1Formula1"^^xsd:string.}}"""^^xsd:string].
+
+#D-KB ID: statements9Formula1 (gdprC2A6P1p3ref)
+#DESCRIPTION: If ?x is processing ?w's personal data during the interval ?t1 (and this data is controlled by ?y, who nominated ?x), and the processing is necessary for compliance with a legal obligation to which the controller is subject, then the processing is lawful.
+[rdf:type :InferenceRule; :has-dkb-id "statements9Formula1"^^xsd:string; :has-sparql-code """
+	CONSTRUCT{?el rdf:type :Rexist. ?el :has-time ?t1. ?el rdf:type :Keep. ?el :has-agent ?x. ?el :has-object ?ep. ?el :has-object-state :lawful. ?el :has-generating-dkb-rule-id "statements9Formula1"^^xsd:string.}
+	WHERE{?w rdf:type :DataSubject. ?z :personaldata-of ?w. ?y :controller-of ?z. ?x rdf:type :Processor. ?edp rdf:type :Rexist. ?edp rdf:type :Nominates. ?edp :has-time ?t1. ?edp :has-agent ?y. ?edp :has-object ?x. ?ep rdf:type :Rexist. ?ep rdf:type :ProcessPersonalData. ?ep :has-time ?t1. ?ep :has-agent ?x. ?ep :has-object ?z. ?en rdf:type :Rexist. ?en rdf:type :BeNecessaryFor. ?en :has-agent ?ep. ?en :has-object ?eo. ?eo rdf:type :Obligatory. ?eo :has-agent ?y. BIND(BNode() AS ?el) NOT EXISTS{?elr rdf:type :Rexist. ?elr :has-time ?t1. ?elr rdf:type :Keep. ?elr :has-agent ?x. ?elr :has-object ?ep. ?elr :has-object-state :lawful. ?elr :has-generating-dkb-rule-id "statements9Formula1"^^xsd:string.}}"""^^xsd:string].

@@ -1,0 +1,31 @@
+@prefix : <https://w3id.org/ontology/dlr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://w3id.org/ontology/dlr#> .
+
+
+##################################################################################################################################################################
+# Description:
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# This example includes an achievement prohibition (in (1)) and a factual statement (in (2)). The latter violates the former, and this is correctly inferred.
+# (1) John is prohibited from entering the park between 3:00 pm and 6:00 pm on January 1, 2025 (UTC).
+# (2) John enters the park between 5:00 pm and 7:00 pm on January 1, 2025 (UTC).
+##################################################################################################################################################################
+
+##################################################################################################################################################################
+# Input facts:
+##################################################################################################################################################################
+
+#John is prohibited from entering the park between 3:00 pm and 6:00 pm on January 1, 2025 (UTC).
+<<:eejo rdf:type :A-Permitted>> rdf:type :false.
+:eejo rdf:type :Enter; :has-agent :John; :has-object :park; :has-time [rdf:type time:Interval;
+	time:hasBeginning [time:inXSDDateTime "2025-01-01T15:00:00Z"^^xsd:dateTime]; 
+	time:hasEnd [time:inXSDDateTime "2025-01-01T18:00:00Z"^^xsd:dateTime]].
+
+#John enters the park between 5:00 pm and 7:00 pm on January 1, 2025 (UTC).
+:eej rdf:type :Rexist, :Enter; :has-agent :John; :has-object :park; :has-time [rdf:type time:Interval;
+	time:hasBeginning [time:inXSDDateTime "2025-01-01T17:00:00Z"^^xsd:dateTime];
+	time:hasEnd [time:inXSDDateTime "2025-01-01T19:00:00Z"^^xsd:dateTime]].
