@@ -22,7 +22,7 @@
       </li>
       <br>
       <li>
-        <code>runDRLrulesBuilder.bat</code> takes as input the compact representation of the DLR rules corresponding to the encoded formulae in the DAPRECO knowledge base (see
+        <code>runDRLrulesBuilder.bat</code> takes as input the compact representation of the DLR rules corresponding to the encoded formulae from the DAPRECO knowledge base (see
         <a href="https://link.springer.com/article/10.1007/s10849-019-09309-z">[Robaldo et al., 2020]</a>) and generates the full versions of the rules to be processed by the DLR reasoner, as well as their counterparts adapted for the SHACL-based reasoner from
         <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>.
       </li>
