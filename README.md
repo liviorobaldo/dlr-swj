@@ -20,6 +20,7 @@
         <code>runExample.bat</code> executes the 12 examples in the <code>DLRsuite\Examples</code> folder, as well as additional examples that readers may prepare themselves, using the DLR reasoner. The inferred knowledge graph is stored in the file
         <code>DLRsuite\inferredGraph.ttl</code>. The specific example to be executed is provided as a parameter to the batch file.
       </li>
+      <br>
       <li>
         <code>runDRLrulesBuilder.bat</code> takes as input the compact representation of the DLR rules corresponding to the encoded formulae in the DAPRECO knowledge base (see
         <a href="https://link.springer.com/article/10.1007/s10849-019-09309-z">[Robaldo et al., 2020]</a>) and generates the full versions of the rules to be processed by the DLR reasoner, as well as their counterparts adapted for the SHACL-based reasoner from
