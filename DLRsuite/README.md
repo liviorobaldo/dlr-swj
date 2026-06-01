@@ -1,39 +1,41 @@
 <div align="justify">
   <p>
-    This GitHub repository contains the Java source code accompanying the paper
-    "Deontic Logic Reified: a deontic logic for the Semantic Web". The logic and all examples shown in the paper
-    are implemented in RDF and SPARQL, and make use of the
-    <a href="https://jena.apache.org/">Apache Jena</a> libraries for execution.
-  </p>
-
-  <p>
-    There are two main subfolders: <code>DLRsuite</code> and <code>SHACLreasonerFromRobaldoetal2023</code>.
-    The RDF and SPARQL resources defining Deontic Logic Reified (DLR) are contained in <code>DLRsuite</code>,
-    while <code>SHACLreasonerFromRobaldoetal2023</code> contains the SHACL-based reasoner from the paper
-    <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>,
-    adapted to operate on the same DLR examples for comparison purposes.
-  </p>
-  <p>
-    <code>compileAll.bat</code> compiles all Java files in both folders under Windows. Once these files have been compiled, one of the following run scripts can be executed:
+    This folder contains the following subfolders:
     <ul>
       <li>
-        <code>runExample.bat</code> executes the 12 examples in the <code>DLRsuite\Examples</code> folder, as well as additional examples that readers may prepare themselves, using the DLR reasoner. The inferred knowledge graph is stored in the file
-        <code>DLRsuite\inferredGraph.ttl</code>. The specific example to be executed is provided as a parameter to the batch file.
+          <code>D-KB</code> contains the rules corresponding to the selected D-KB formulae. The compact version of these rules can be found in the
+          file <code>SPARQLrulesCompact.txt</code>. <code>runDRLrulesBuilder.bat</code> takes this file as input and generates the files
+          <code>DKBrules.ttl</code> and <code>DKBTBox.ttl</code> in the <code>D-KB</code> subfolder. These files contain the full version of the 
+          rules and the TBox to be executed by the DLR reasoner. This subfolder also includes <code>UseCaseBaseline.json</code> and
+          <code>reducedUseCaseBaseline.json</code>, which are used by <code>runGenerateAndTestAllRules.bat</code> to generate and test the rules in
+          <code>DKBrules.ttl</code>.
       </li>
       <br>
       <li>
-        <code>runDRLrulesBuilder.bat</code> takes as input the compact representation of the DLR rules corresponding to the encoded formulae from the DAPRECO knowledge base (see
-        <a href="https://link.springer.com/article/10.1007/s10849-019-09309-z">[Robaldo et al., 2020]</a>) and generates the full versions of the rules to be processed by the DLR reasoner, as well as their counterparts adapted for the SHACL-based reasoner from
-        <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>.
+        <code>DKBmanager</code> contains the Java classes executed by <code>runDRLrulesBuilder.bat</code>, which generate
+        <code>DKBrules.ttl</code> and <code>DKBTBox.ttl</code>.
       </li>
       <br>
       <li>
-        <code>runGenerateAndTestAllRules.bat</code> generates all possible combinations of ABoxes for the DLR rules produced by the previous batch file and, for each of them, verifies that the expected outcomes are present in the inferred knowledge graph computed by the DLR reasoner. The generate-and-test evaluation is guided by the file
-        <code>DLRsuite\D-KB\UseCaseBaseline.json</code>, as explained in Section 6 of the paper.
+        <code>DLRreasoner</code> contains the Java source code of the DLR reasoner, which is used by (almost) all other components to execute DLR 
+        rules.
       </li>
       <br>
       <li>
-        <code>runGenerateAndRunRandomABoxes.bat</code> uses the file <code>DLRsuite\D-KB\UseCaseBaseline.json</code> to generate <code>n</code> random ABoxes, which are then processed by the DLR reasoner. The script also measures computational performance. In addition, it produces corresponding ABoxes in the input format of the SHACL-based reasoner, which can then be executed using <code>runSHACLreasonerFromRobaldoetal2023.bat</code>. The latter also measures computational performance, showing that the DLR reasoner outperforms the SHACL-based one (see Section 7 of the paper).
+        <code>DLRrules</code> contains the core rules of the Deontic Logic Reified framework, used to check compliance, detect violations, etc.
+        (file <code>DLRcompliance.ttl</code>), as well as to implement defeasibility and temporal reasoning.
+      </li>
+      <br>
+      <li>
+        <code>Examples</code> contains the 12 examples discussed throughout the paper. Each example includes a detailed explanation of the encoded 
+        norms and the expected results. These files can be executed via <code>runExample.bat</code>, and the inferred knowledge graph is stored in
+        <code>inferredGraph.ttl</code>.
+      </li>
+      <br>
+      <li>
+        <code>GenerateAndTest</code> contains the Java classes that implement the generate-and-test methodology, including the random generation of 
+        sample ABoxes to be processed by the DLR reasoner. The classes in this subfolder are executed via <code>runGenerateAndTestAllRules.bat</code>
+        and <code>runGenerateAndRunRandomABoxes.bat</code>.
       </li>
     </ul>
   </p>
