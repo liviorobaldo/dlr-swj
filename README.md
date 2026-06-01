@@ -31,12 +31,11 @@
         <code>runGenerateAndTestAllRules.bat</code> generates all possible combinations of ABoxes for the DLR rules produced by the previous batch file and, for each of them, verifies that the expected outcomes are present in the inferred knowledge graph computed by the DLR reasoner. The generate-and-test evaluation is guided by the file
         <code>DLRsuite\D-KB\UseCaseBaseline.json</code>, as explained in Section 6 of the paper.
       </li>
-<!--    
+      <br>
       <li>
         <code>runGenerateAndRunRandomABoxes.bat</code> uses the file <code>DLRsuite\D-KB\UseCaseBaseline.json</code> to generate <code>n</code> random ABoxes, which are then processed by the DLR reasoner. The script also measures computational performance. In addition, it produces corresponding ABoxes in the input format of the SHACL-based reasoner from
         <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>, which can then be executed using <code>runSHACLreasonerFromRobaldoetal2023.bat</code>. The latter also measures computational performance, showing that the DLR reasoner outperforms the SHACL-based one.
       </li>
--->
     </ul>
   </p>
 </div>
