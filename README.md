@@ -33,8 +33,7 @@
       </li>
       <br>
       <li>
-        <code>runGenerateAndRunRandomABoxes.bat</code> uses the file <code>DLRsuite\D-KB\UseCaseBaseline.json</code> to generate <code>n</code> random ABoxes, which are then processed by the DLR reasoner. The script also measures computational performance. In addition, it produces corresponding ABoxes in the input format of the SHACL-based reasoner from
-        <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>, which can then be executed using <code>runSHACLreasonerFromRobaldoetal2023.bat</code>. The latter also measures computational performance, showing that the DLR reasoner outperforms the SHACL-based one (see Section 7 of the paper).
+        <code>runGenerateAndRunRandomABoxes.bat</code> uses the file <code>DLRsuite\D-KB\UseCaseBaseline.json</code> to generate <code>n</code> random ABoxes, which are then processed by the DLR reasoner. The script also measures computational performance. In addition, it produces corresponding ABoxes in the input format of the SHACL-based reasoner, which can then be executed using <code>runSHACLreasonerFromRobaldoetal2023.bat</code>. The latter also measures computational performance, showing that the DLR reasoner outperforms the SHACL-based one (see Section 7 of the paper).
       </li>
     </ul>
   </p>
