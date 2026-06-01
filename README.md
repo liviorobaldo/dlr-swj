@@ -37,4 +37,7 @@
       </li>
     </ul>
   </p>
+  <p>
+    Further info can be found in the <code>DLRsuite</code> and <code>SHACLreasonerFromRobaldoetal2023</code> subfolders.
+  </p>
 </div>
