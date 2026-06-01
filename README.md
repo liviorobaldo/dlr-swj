@@ -1,7 +1,7 @@
 <div style="text-align: justify;">
   <p>
     This GitHub repository contains the Java source code accompanying the paper
-    "Deontic Logic Reified: a deontic logic for the Semantic Web". The logic and all examples
+    "Deontic Logic Reified: a deontic logic for the Semantic Web". The logic and all examples shown in the paper
     are implemented in RDF and SPARQL, and make use of the
     <a href="https://jena.apache.org/">Apache Jena</a> libraries for execution.
   </p>
