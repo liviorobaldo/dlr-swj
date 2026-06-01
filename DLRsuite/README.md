@@ -14,7 +14,7 @@
       <br>
       <li>
         <code>DKBmanager</code> contains the Java classes executed by <code>runDRLrulesBuilder.bat</code>, which generate
-        <code>DKBrules.ttl</code> and <code>DKBTBox.ttl</code>.
+        <code>DKBrules.ttl</code> and <code>DKBTBox.ttl</code> in the <code>D-KB</code> folder described in the previous point.
       </li>
       <br>
       <li>
