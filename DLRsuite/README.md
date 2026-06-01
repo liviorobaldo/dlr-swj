@@ -34,7 +34,7 @@
       </li>
       <br>
       <li>
-        <code>GenerateAndTest</code> contains the Java classes that implement the generate-and-test methodology, including the random generation of 
+        <code>GenerateAndTest</code> contains the Java classes that implement the generate-and-test methodology and the random generation of 
         sample ABoxes to be processed by the DLR reasoner. The classes in this subfolder are executed via <code>runGenerateAndTestAllRules.bat</code>
         and <code>runGenerateAndRunRandomABoxes.bat</code>.
       </li>
