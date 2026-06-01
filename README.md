@@ -1,4 +1,4 @@
-<div>
+<html>
   <p style="text-align:justify;">
     This GitHub repository contains the Java source code accompanying the paper
     "Deontic Logic Reified: a deontic logic for the Semantic Web". The logic and all examples shown in the paper
@@ -13,4 +13,4 @@
     <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>,
     adapted to operate on the same DLR examples for comparison purposes.
   </p>
-</div>
+</html>
