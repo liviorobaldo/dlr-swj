@@ -1,0 +1,630 @@
+@prefix : <https://w3id.org/ontology/dlr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://w3id.org/ontology/dlr#> .
+
+			:t1 rdf:type time:Interval; time:hasBeginning :t1b; time:hasEnd :t1e.
+			:t1b rdf:type time:Instant; time:inXSDDateTime "2026-01-01T17:00:00Z"^^xsd:dateTime.
+			:t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-01T18:00:00Z"^^xsd:dateTime.
+			:t2 rdf:type time:Interval; time:hasBeginning :t2b; time:hasEnd :t2e.
+			:t2b rdf:type time:Instant; time:inXSDDateTime "2025-12-31T10:00:00Z"^^xsd:dateTime.
+			:t2e rdf:type time:Instant; time:inXSDDateTime "2025-12-31T20:00:00Z"^^xsd:dateTime.
+			:t_anytime_before_t1 rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd :t1b.
+			:t_anytime_before_t2 rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd :t2b.
+			:mi rdf:type time:Instant. 
+			:t_including_t1 rdf:type time:Interval; time:hasBeginning :t_including_t1b; time:hasEnd :t_including_t1e.
+			:t_including_t1b rdf:type time:Instant; time:inXSDDateTime "2026-01-01T16:00:00Z"^^xsd:dateTime.  
+			:t_including_t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-01T19:00:00Z"^^xsd:dateTime.
+			:t_including_t2 rdf:type time:Interval; time:hasBeginning :t_including_t2b; time:hasEnd :t_including_t2e.
+			:t_including_t2b rdf:type time:Instant; time:inXSDDateTime "2025-11-01T16:00:00Z"^^xsd:dateTime.  
+			:t_including_t2e rdf:type time:Instant; time:inXSDDateTime "2025-12-31T21:00:00Z"^^xsd:dateTime.
+			:t_instant_inside_t1 rdf:type time:Instant; time:inXSDDateTime "2026-01-01T17:30:00Z"^^xsd:dateTime.
+			:t_before_t1 rdf:type time:Instant; time:inXSDDateTime "2026-01-01T16:00:00Z"^^xsd:dateTime.
+			:t_before_t2 rdf:type time:Instant; time:inXSDDateTime "2025-12-30T16:00:00Z"^^xsd:dateTime.
+			:t_10minutes_after_t1 rdf:type time:Instant; time:inXSDDateTime "2026-01-01T18:10:00Z"^^xsd:dateTime.
+			:t_after_t1 rdf:type time:Interval; time:hasBeginning :t1e; time:hasEnd :t_after_t1e.
+			:t_after_t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-05T18:00:00Z"^^xsd:dateTime.
+			:t_including_t_after_t1 rdf:type time:Interval; time:hasBeginning :t1b; time:hasEnd :t_including_t_after_t1e.
+			:t_including_t_after_t1e rdf:type time:Instant; time:inXSDDateTime "2026-01-05T22:00:00Z"^^xsd:dateTime.
+		
+
+			:epup_3 rdf:type :Purpose . 
+			:ep_2 :is-based-on :epup_3 .
+			:epup_3 rdf:type :PublicInterest .
+		
+			:w_7 rdf:type :DataSubject .
+			:z_7 :personaldata-of :w_7 .
+			:y_7 :controller-of :z_7 .
+			:x_7 rdf:type :Processor .
+			:edp_7 rdf:type :Rexist .
+			:edp_7 rdf:type :Nominates .
+			:edp_7 :has-time :t1 .
+			:edp_7 :has-agent :y_7 .
+			:edp_7 :has-object :x_7 .
+			:ep_7 rdf:type :Rexist .
+			:ep_7 rdf:type :ProcessPersonalData .
+			:ep_7 :has-time :t1 .
+			:ep_7 :has-agent :x_7 .
+			:ep_7 :has-object :z_7 .
+			:epup_7 rdf:type :Purpose .
+			:ep_7 :is-based-on :epup_7 .
+			:estr_7 rdf:type :Rexist .
+			:estr_7 rdf:type :Store .
+			:estr_7 :has-time :t_after_t1 .
+			:estr_7 :has-agent :x_7 . 
+			:estr_7 :has-object :z_7 .
+			:estr_7 :has-location :pdr_7.
+			:pdr_7 rdf:type :PersonalDataRecord.
+			:enbnf_7 rdf:type :Rexist .
+			:enbnf_7 :has-time :t_after_t1 .
+			:enbnf_7 :not :ebnf_7 . 
+			:enbnf_7 rdf:type :Eventuality .
+			:ebnf_7 rdf:type :BeNecessaryFor .
+			:ebnf_7 :has-agent :estr_7 .
+			:ebnf_7 :has-object :epup_7 .
+		
+			:ekdsnli_7 rdf:type :Rexist .
+			:ekdsnli_7 rdf:type :Keep .
+			:ekdsnli_7 :has-time :t_including_t_after_t1 .
+			:ekdsnli_7 :has-agent :x_7 .
+			:ekdsnli_7 :has-object :z_7 .
+			:ekdsnli_7 :has-object-state :data-subject-no-longer-identifiable.
+		
+			:ebnfc_10 rdf:type :Rexist .
+			:ebnfc_10 rdf:type :BeNecessaryFor .
+			:ebnfc_10 :has-agent :ep_1 .
+			:ebnfc_10 :has-object :exct_10 .
+			:exct_10 rdf:type :Execute .
+			:exct_10 :has-object :cntr_10 .
+			:cntr_10 rdf:type :Contract .
+			:w_1 :is-party-in :cntr_10 .
+		
+			:ebnfoby_11 rdf:type :Rexist .
+			:ebnfoby_11 rdf:type :BeNecessaryFor .
+			:ebnfoby_11 :has-agent :ep_1 .
+			:ebnfoby_11 :has-object :oby_11 .
+			:oby_11 rdf:type :Obligatory .
+			:oby_11 :has-agent :y_1 .
+		
+			:ebnfpvids_12 rdf:type :Rexist .
+			:ebnfpvids_12 rdf:type :BeNecessaryFor .
+			:ebnfpvids_12 :has-agent :ep_1 .
+			:ebnfpvids_12 :has-object :pvids_12 .
+			:pvids_12 rdf:type :Protect .
+			:pvids_12 :has-object :vi_12 .
+			:vi_12 :vital-interest-of :w_1 .
+		
+			:ebnfetpi_13 rdf:type :Rexist .
+			:ebnfetpi_13 rdf:type :BeNecessaryFor .
+			:ebnfetpi_13 :has-agent :ep_1 .
+			:ebnfetpi_13 :has-object :extpi_13 .
+			:extpi_13 rdf:type :Execute .
+			:extpi_13 :has-object :tpi_13 .
+			:tpi_13 :is-related-to :pi_13 .
+			:pi_13 rdf:type :PublicInterest .
+		
+			:ebnfliy_14 rdf:type :Rexist .
+			:ebnfliy_14 rdf:type :BeNecessaryFor .
+			:ebnfliy_14 :has-agent :ep_1 .
+			:ebnfliy_14 :has-object :liy_14 .
+			:liy_14 :legitimate-interest-of :y_1 .
+			<<:ep_1 :causes :riskforrf_14>> rdf:type :false .
+			:riskforrf_14 :is-risk-for :rf_14 .
+			:rf_14 :rights-and-freedoms-of :w_1 .
+		
+			:w_16 rdf:type :DataSubject .
+			:z_16 :personaldata-of :w_16 .
+			:y_16 :controller-of :z_16 .
+			:x_16 rdf:type :Processor .
+			:edp_16 rdf:type :Rexist .
+			:edp_16 rdf:type :Nominates .
+			:edp_16 :has-time :t1 .
+			:edp_16 :has-agent :y_16 .
+			:edp_16 :has-object :x_16 .
+			:ep_16 rdf:type :Rexist .
+			:ep_16 rdf:type :ProcessPersonalData .
+			:ep_16 :has-time :t1 .
+			:ep_16 :has-agent :x_16 .
+			:ep_16 :has-object :z_16 .
+			:ec_16 rdf:type :Rexist .
+			:ec_16 rdf:type :CollectPersonalData .
+			:ec_16 :has-time :t2 .
+			:ec_16 :has-agent :x_16 .
+			:ec_16 :has-object :z_16 .
+			:epup_16 rdf:type :Purpose .
+			:ep_16 :is-based-on :epup_16 .
+			:epuc_16 rdf:type :Purpose .
+			:ec_16 :is-based-on :epuc_16 .
+			:engcp_16 rdf:type :Rexist .
+			:engcp_16 :not :egcp_16 . 
+			:engcp_16 rdf:type :Eventuality .
+			:egcp_16 rdf:type :Give .
+			:egcp_16 :has-agent :w_16 .
+			:egcp_16 :has-object :cp_16 .
+			:egcp_16 :has-time :t_before_t1 .
+			:cp_16 :is-consent-for :epup_16 .
+			:ennfobj23_16 rdf:type :Rexist . 
+			:ennfobj23_16 :not :enfobj23_16 .
+			:enfobj23_16 rdf:type :BeNecessaryFor . 
+			:enfobj23_16 :has-agent :ep_16. 
+			:enfobj23_16 :has-object :esfgobj23_16 .		
+			:esfgobj23_16 rdf:type :Safeguard .
+			:esfgobj23_16 :has-agent :l_16 .
+			:esfgobj23_16 :has-object :obj23_16 .
+			:l_16 rdf:type :EUorMSlaw .
+			:obj23_16 rdf:type :ObjectivesArt23P1 .			
+			:elipc_16 :links :epup_16 .
+			:elipc_16 :links :epuc_16 .
+			:ctxp_16 :is-context-of :ep_16 . 
+			:natz_16 :is-nature-of :z_16 .
+			:envs_16 rdf:type :Rexist . 
+			:envs_16 rdf:type :Envisage .
+			:envs_16 :has-time :t1 .
+			:envs_16 :has-agent :w_16 .
+			:envs_16 :has-object :econseqp_16 .
+			:ep_16 :cause :econseqp_16 . 
+		
+			:etkia1_16 rdf:type :Rexist .
+			:etkia1_16 rdf:type :TakeIntoAccount .
+			:etkia1_16 :has-time :t_instant_inside_t1 .
+			:etkia1_16 :has-agent :y_16 . 
+			:etkia1_16 :has-object :elipc_16 .
+			
+			:etkia2_16 rdf:type :Rexist .
+			:etkia2_16 rdf:type :TakeIntoAccount .
+			:etkia2_16 :has-time :t_instant_inside_t1 .
+			:etkia2_16 :has-agent :y_16 . 
+			:etkia2_16 :has-object :ctxp_16 .
+			
+			:etkia3_16 rdf:type :Rexist .
+			:etkia3_16 rdf:type :TakeIntoAccount .
+			:etkia3_16 :has-time :t_instant_inside_t1 .
+			:etkia3_16 :has-agent :y_16 . 
+			:etkia3_16 :has-object :natz_16 .
+			
+			:etkia4_16 rdf:type :Rexist .
+			:etkia4_16 rdf:type :TakeIntoAccount .
+			:etkia4_16 :has-time :t_instant_inside_t1 .
+			:etkia4_16 :has-agent :y_16 . 
+			:etkia4_16 :has-object :econseqp_16 .
+		
+			:w_17 rdf:type :DataSubject .
+			:z_17 :personaldata-of :w_17 .
+			:y_17 :controller-of :z_17 .
+			:x_17 rdf:type :Processor .
+			:edp_17 rdf:type :Rexist .
+			:edp_17 rdf:type :Nominates .
+			:edp_17 :has-time :t1 .
+			:edp_17 :has-agent :y_17 .
+			:edp_17 :has-object :x_17 .
+			:ep_17 rdf:type :Rexist .
+			:ep_17 rdf:type :ProcessPersonalData .
+			:ep_17 :has-time :t1 .
+			:ep_17 :has-agent :x_17 .
+			:ep_17 :has-object :z_17 .
+			:epup_17 rdf:type :Purpose .
+			:ep_17 :is-based-on :epup_17 .
+			:egcp_17 rdf:type :Rexist .
+			:egcp_17 rdf:type :Give .
+			:egcp_17 :has-agent :w_17 .
+			:egcp_17 :has-object :cp_17 .
+			:egcp_17 :has-time :t_before_t1 .
+			:cp_17 :is-consent-for :epup_17 .
+		
+			:edms_17 rdf:type :Rexist .
+			:edms_17 rdf:type :Demonstrate .
+			:edms_17 :has-time :t_instant_inside_t1 .
+			:edms_17 :has-agent :y_17 . 
+			:edms_17 :has-object :egcp_17 .
+		
+			:w_18 rdf:type :DataSubject .
+			:z_18 :personaldata-of :w_18 .
+			:y_18 :controller-of :z_18 .
+			:x_18 rdf:type :Processor .
+			:edp_18 rdf:type :Rexist .
+			:edp_18 rdf:type :Nominates .
+			:edp_18 :has-time :t1 .
+			:edp_18 :has-agent :y_18 .
+			:edp_18 :has-object :x_18 .
+			:ep_18 rdf:type :Rexist .
+			:ep_18 rdf:type :ProcessPersonalData .
+			:ep_18 :has-time :t1 .
+			:ep_18 :has-agent :x_18 .
+			:ep_18 :has-object :z_18 .
+			:epup_18 rdf:type :Purpose .
+			:ep_18 :is-based-on :epup_18 .
+			:egcp_18 rdf:type :Rexist .
+			:egcp_18 rdf:type :Give .
+			:egcp_18 :has-agent :w_18 .
+			:egcp_18 :has-object :cp_18 .
+			:egcp_18 :has-time :t_before_t1 .
+			:cp_18 :is-consent-for :epup_18 .
+			:erwwd_18 rdf:type :Rexist .
+			:erwwd_18 rdf:type :Request .
+			:erwwd_18 :has-time :t2 .
+			:erwwd_18 :has-object :cp_18 .
+			:erwwd_18 :has-recipient :w_18 .
+			:erwwd_18 :has-instrument :wrdlc_18 .
+			:wrdlc_18 rdf:type :WrittenDeclaration .
+			:cp_18 :is-part-of :wrdlc_18 .
+		
+			:ekerc_18 rdf:type :Rexist .
+			:ekerc_18 :has-time :t_including_t2 . 
+			:ekerc_18 rdf:type :Keep .
+			:ekerc_18 :has-agent :x_18 .
+			:ekerc_18 :has-object :erwwd_18 .
+			:ekerc_18 :has-object-state :clear . 
+		
+			:w_19 rdf:type :DataSubject .
+			:z_19 :personaldata-of :w_19 .
+			:y_19 :controller-of :z_19 .
+			:x_19 rdf:type :Processor .
+			:edp_19 rdf:type :Rexist .
+			:edp_19 rdf:type :Nominates .
+			:edp_19 :has-time :t1 .
+			:edp_19 :has-agent :y_19 .
+			:edp_19 :has-object :x_19 .
+			:ep_19 rdf:type :Rexist .
+			:ep_19 rdf:type :ProcessPersonalData .
+			:ep_19 :has-time :t1 .
+			:ep_19 :has-agent :x_19 .
+			:ep_19 :has-object :z_19 .
+			:epup_19 rdf:type :Purpose .
+			:ep_19 :is-based-on :epup_19 .
+			:egcp_19 rdf:type :Rexist .
+			:egcp_19 rdf:type :Give .
+			:egcp_19 :has-agent :w_19 .
+			:egcp_19 :has-object :cp_19 .
+			:egcp_19 :has-time :t_before_t1 .
+			:cp_19 :is-consent-for :epup_19 .
+		
+			:ewdr_19 rdf:type :Rexist .
+			:ewdr_19 rdf:type :Withdraw .
+			:ewdr_19 :has-time :t_instant_inside_t1 .
+			:ewdr_19 :has-agent :w_19 .
+			:ewdr_19 :has-object :cp_19 .
+			:cp_19 :is-consent-for :epup_19 .
+		
+			:w_20 rdf:type :DataSubject .
+			:z_20 :personaldata-of :w_20 .
+			:y_20 :controller-of :z_20 .
+			:x_20 rdf:type :Processor .
+			:edp_20 rdf:type :Rexist .
+			:edp_20 rdf:type :Nominates .
+			:edp_20 :has-time :t1 .
+			:edp_20 :has-agent :y_20 .
+			:edp_20 :has-object :x_20 .
+			:ep_20 rdf:type :Rexist .
+			:ep_20 rdf:type :ProcessPersonalData .
+			:ep_20 :has-time :t1 .
+			:ep_20 :has-agent :x_20 .
+			:ep_20 :has-object :z_20 .
+			:epup_20 rdf:type :Purpose .
+			:ep_20 :is-based-on :epup_20 .
+			:cp_20 :is-consent-for :epup_20 .
+			:epwtd_20 rdf:type :Permitted .
+			:epwtd_20 rdf:type :Withdraw .
+			:epwtd_20 :has-time :t1 .
+			:epwtd_20 :has-agent :w_20 .
+			:epwtd_20 :has-object :cp_20 .
+		
+			:ecpwtd_20 rdf:type :Rexist .
+			:ecpwtd_20 rdf:type :Communicate .
+			:ecpwtd_20 :has-time :t_instant_inside_t1 .
+			:ecpwtd_20 :has-agent :x_20 .
+			:ecpwtd_20 :has-object :epwtd_20 .
+			:ecpwtd_20 :has-recipient :w_20 .
+		
+			:w_21 rdf:type :DataSubject .
+			:z_21 :personaldata-of :w_21 .
+			:y_21 :controller-of :z_21 .
+			:x_21 rdf:type :Processor .
+			:edp_21 rdf:type :Rexist .
+			:edp_21 rdf:type :Nominates .
+			:edp_21 :has-time :t1 .
+			:edp_21 :has-agent :y_21 .
+			:edp_21 :has-object :x_21 .
+			:ep_21 rdf:type :Rexist .
+			:ep_21 rdf:type :ProcessPersonalData .
+			:ep_21 :has-time :t1 .
+			:ep_21 :has-agent :x_21 .
+			:ep_21 :has-object :z_21 .
+			:epup_21 rdf:type :Purpose .
+			:ep_21 :is-based-on :epup_21 .
+			:cp_21 :is-consent-for :epup_21 .
+			:egcp_21 rdf:type :Rexist .
+			:egcp_21 rdf:type :Give .
+			:egcp_21 :has-agent :w_21 .
+			:egcp_21 :has-object :cp_21 .
+			:epwtd_21 rdf:type :Permitted .
+			:epwtd_21 rdf:type :Withdraw .
+			:epwtd_21 :has-time :t1 .
+			:epwtd_21 :has-agent :w_21 .
+			:epwtd_21 :has-object :cp_21 .
+		
+			:ekaeaw_21 rdf:type :Rexist .
+			:ekaeaw_21 rdf:type :Keep .
+			:ekaeaw_21 :has-time :t_including_t1 .
+			:ekaeaw_21 :has-agent :x_21 .
+			:ekaeaw_21 :has-object :epwtd_21 .
+			:ekaeaw_21 :has-object-state :easy .
+			:ekaeaw_21 :has-object-state-as :egcp_21 .
+		
+			:w_1 :has-member-state :ms_22 .
+			:ms_22 :has-minimal-age-for-consent 14 .
+		
+			:w_1 :has-age 14 .
+		
+			:eghcp_24 rdf:type :Rexist .
+			:eghcp_24 rdf:type :Give .
+			:eghcp_24 :has-agent :hpr_24 .
+			:eghcp_24 :has-object :cp_24 .
+			:eghcp_24 :has-time :t_before_t1 .
+			:cp_24 :is-consent-for :epup_1 .
+			:hpr_24 :is-holder-of-parental-responsibility :w_1 .
+		
+			:w_27 rdf:type :DataSubject .
+			:z_27 :personaldata-of :w_27 .
+			:y_27 :controller-of :z_27 .
+			:x_27 rdf:type :Processor .
+			:edp_27 rdf:type :Rexist .
+			:edp_27 rdf:type :Nominates .
+			:edp_27 :has-time :t1 .
+			:edp_27 :has-agent :y_27 .
+			:edp_27 :has-object :x_27 .
+			:z_27 rdf:type :GeneticData .
+			:epup_27 rdf:type :Purpose .
+			:epup_27 :is-identification-of :w_27 .
+		
+			:ep_27 rdf:type :Rexist .
+			:ep_27 rdf:type :ProcessPersonalData .
+			:ep_27 :has-agent :x_27 .
+			:ep_27 :has-object :z_27 .
+			:ep_27 :has-time :t1 .
+			:ep_27 :is-based-on :epup_27 .
+		
+			:w_28 rdf:type :DataSubject .
+			:z_28 :personaldata-of :w_28 .
+			:y_28 :controller-of :z_28 .
+			:x_28 rdf:type :Processor .
+			:edp_28 rdf:type :Rexist .
+			:edp_28 rdf:type :Nominates .
+			:edp_28 :has-time :t1 .
+			:edp_28 :has-agent :y_28 .
+			:edp_28 :has-object :x_28 .
+			:z_28 rdf:type :BiometricData .
+			:epup_28 rdf:type :Purpose .
+			:epup_28 :is-identification-of :w_28 .
+		
+			:ep_28 rdf:type :Rexist .
+			:ep_28 rdf:type :ProcessPersonalData .
+			:ep_28 :has-agent :x_28 .
+			:ep_28 :has-object :z_28 .
+			:ep_28 :has-time :t1 .
+			:ep_28 :is-based-on :epup_28 .
+		
+			:enag_33 rdf:type :Rexist .
+			:enag_33 :not :eag_33 .
+			:eag_33 rdf:type :Authorize .
+			:eag_33 :has-agent :l_33 .
+			:eag_33 :has-object :egcp_30 . 
+			:l_33 rdf:type :EUorMSlaw .			
+		
+			:w_26 :has-age 14 .
+		
+			:w_28 :has-age 14 .
+		
+			:w_26 :has-member-state :ms_38 .
+			:ms_38 :has-minimal-age-for-consent 14 .
+		
+			:w_27 :has-member-state :ms_39 .
+			:ms_39 :has-minimal-age-for-consent 14 .
+		
+			:ebnfrw_43 rdf:type :Rexist .
+			:ebnfrw_43 rdf:type :BeNecessaryFor .
+			:ebnfrw_43 :has-agent :ep_28 .
+			:ebnfrw_43 :has-object :rw_43 .
+			:rw_43 rdf:type :Permitted .
+			:rw_43 :has-agent :w_28 .
+			:rw_43 :is-related-to :ss_43 . 
+			:ss_43 rdf:type :EmploymentAndSocialSecurityAndSocialProtectionLaw .
+			:l_43 rdf:type :EUorMSlaw . 
+			:eauthep_43 rdf:type :Rexist .
+			:eauthep_43 rdf:type :Authorize .
+			:eauthep_43 :has-object :ep_28 .
+			:eauthep_43 :has-agent :l_43 .
+		
+			:ebnfpvids_44 rdf:type :Rexist .
+			:ebnfpvids_44 rdf:type :BeNecessaryFor .
+			:ebnfpvids_44 :has-agent :ep_26 .
+			:ebnfpvids_44 :has-object :pvids_44 .
+			:pvids_44 rdf:type :Protect .
+			:pvids_44 :has-object :vi_44 .
+			:vi_44 :vital-interest-of :w_26 .
+		
+			:ebnfnfpb_48 rdf:type :Rexist .
+			:ebnfnfpb_48 rdf:type :BeNecessaryFor .
+			:ebnfnfpb_48 :has-agent :ep_27 .
+			:ebnfnfpb_48 :has-object :actnfpb_48 .
+			:actnfpb_48 :is-related-to :x_27 . 
+			:x_27 rdf:type :NotForProfitBody .
+			:w_27 :is-related-to :x_27 .
+			:enctok_48 rdf:type :Rexist .
+			:enctok_48 :not :ectok_48 .
+			:ectok_48 rdf:type :Communicate . 
+			:ectok_48 :has-agent :x_27 .
+			:ectok_48 :has-object :z_27 .
+			:ectok_48 :has-recipient :koutsidex_48 .
+			:koutsidex_48 :is-outside :x_27 .
+		
+			:ebnfnfpb_49 rdf:type :Rexist .
+			:ebnfnfpb_49 rdf:type :BeNecessaryFor .
+			:ebnfnfpb_49 :has-agent :ep_28 .
+			:ebnfnfpb_49 :has-object :actnfpb_49 .
+			:actnfpb_49 :is-related-to :x_28 . 
+			:x_28 rdf:type :NotForProfitBody .
+			:w_28 :is-related-to :x_28 .
+			:enctok_49 rdf:type :Rexist .
+			:enctok_49 :not :ectok_49 .
+			:ectok_49 rdf:type :Communicate . 
+			:ectok_49 :has-agent :x_28 .
+			:ectok_49 :has-object :z_28 .
+			:ectok_49 :has-recipient :koutsidex_49 .
+			:koutsidex_49 :is-outside :x_28 .
+		
+			:z_26 rdf:type :Public .
+		
+			:ebnftrpi_56 rdf:type :Rexist .
+			:ebnftrpi_56 rdf:type :BeNecessaryFor .
+			:ebnftrpi_56 :has-agent :ep_26 .
+			:ebnftrpi_56 :has-object :trpi_56 .
+			:trpi_56 :is-related-to :pi_56 .
+			:pi_56 rdf:type :PublicInterest .
+			:trpi_56 :is-related-to :l_56 .
+			:l_56 rdf:type :EUorMSlaw .
+			:l_56 rdf:type :Reasonable .    
+			:esflrf1_56 rdf:type :Rexist .
+			:esflrf1_56 rdf:type :Safeguard .
+			:esflrf1_56 :has-agent :l_56 .
+			:esflrf1_56 :has-object :rf_56 .
+			:rf_56 :rights-and-freedoms-of :w_26 .
+			:esflrf2_56 rdf:type :Rexist .
+			:esflrf2_56 rdf:type :Safeguard .
+			:esflrf2_56 :has-agent :l_56 .
+			:esflrf2_56 :has-object :liw_56 .
+			:liw_56 :legitimate-interest-of :w_26 .
+		
+			:ebnftrpi_57 rdf:type :Rexist .
+			:ebnftrpi_57 rdf:type :BeNecessaryFor .
+			:ebnftrpi_57 :has-agent :ep_27 .
+			:ebnftrpi_57 :has-object :trpi_57 .
+			:trpi_57 :is-related-to :pi_57 .
+			:pi_57 rdf:type :PublicInterest .
+			:trpi_57 :is-related-to :l_57 .
+			:l_57 rdf:type :EUorMSlaw .
+			:l_57 rdf:type :Reasonable .    
+			:esflrf1_57 rdf:type :Rexist .
+			:esflrf1_57 rdf:type :Safeguard .
+			:esflrf1_57 :has-agent :l_57 .
+			:esflrf1_57 :has-object :rf_57 .
+			:rf_57 :rights-and-freedoms-of :w_27 .
+			:esflrf2_57 rdf:type :Rexist .
+			:esflrf2_57 rdf:type :Safeguard .
+			:esflrf2_57 :has-agent :l_57 .
+			:esflrf2_57 :has-object :liw_57 .
+			:liw_57 :legitimate-interest-of :w_27 .
+		
+			:ebnfeth_60 rdf:type :Rexist .
+			:ebnfeth_60 rdf:type :BeNecessaryFor .
+			:ebnfeth_60 :has-agent :ep_27 .
+			:ebnfeth_60 :has-object :eth_60 .
+			:eth_60 rdf:type :Execute .
+			:eth_60 :has-object :th_60 .
+			:th_60 :is-related-to :health_60 .
+			:health_60 rdf:type :Health .
+			:eauth_60 rdf:type :Rexist .
+			:eauth_60 rdf:type :Authorize .
+			:eauth_60 :has-agent :l_60 .
+			:eauth_60 :has-object :th_60 .
+			:l_60 rdf:type :EUorMSlaw .
+		
+			:ebnfetpi_64 rdf:type :Rexist .
+			:ebnfetpi_64 rdf:type :BeNecessaryFor .
+			:ebnfetpi_64 :has-agent :ep_28 .
+			:ebnfetpi_64 :has-object :extpi_64 .
+			:extpi_64 rdf:type :Execute .
+			:extpi_64 :has-object :tpi_64 .
+			:tpi_64 :is-related-to :pi_64 .
+			:pi_64 rdf:type :PublicInterest .
+			:pi_64 :is-related-to :health_64 .
+			:health_64 rdf:type :Health .
+			:eautpi_64 rdf:type :Rexist .
+			:eautpi_64 rdf:type :Authorize .
+			:eautpi_64 :has-agent :l_64 .
+			:eautpi_64 :has-object :tpi_64 .
+			:l_64 rdf:type :EUorMSlaw .
+			:esflrf1_64 rdf:type :Rexist .
+			:esflrf1_64 rdf:type :Safeguard .
+			:esflrf1_64 :has-agent :l_64 .
+			:esflrf1_64 :has-object :rf_64 .
+			:rf_64 :rights-and-freedoms-of :w_28 .
+		
+			:w_65 rdf:type :DataSubject .
+			:z_65 :personaldata-of :w_65 .
+			:y_65 :controller-of :z_65 .
+			:x_65 rdf:type :Processor .
+			:edp_65 rdf:type :Rexist .
+			:edp_65 rdf:type :Nominates .
+			:edp_65 :has-time :t1 .
+			:edp_65 :has-agent :y_65 .
+			:edp_65 :has-object :x_65 .
+			:ep_65 rdf:type :Rexist .
+			:ep_65 rdf:type :ProcessPersonalData .
+			:ep_65 :has-time :t1 .
+			:ep_65 :has-agent :x_65 .
+			:ep_65 :has-object :z_65 .
+			:epup_65 rdf:type :Purpose .
+			:ep_65 :is-based-on :epup_65 .
+			:ep_65 :is-related-to :crime_65 .
+			:crime_65 rdf:type :Crime .
+		
+			:eiscoa_65 rdf:type :Rexist .
+			:eiscoa_65 rdf:type :MakeControlledOrAuthorized .
+			:eiscoa_65 :has-time :t_including_t1 .
+			:eiscoa_65 :has-agent :y_65 .
+			:eiscoa_65 :has-object :ep_65 .
+		
+			:eoac_66 rdf:type :Rexist .
+			:eoac_66 rdf:type :Control .
+			:eoac_66 :has-agent :oa_66 .
+			:eoac_66 :has-object :ep_65 .
+			:eoac_66 :has-time :t1 .
+			:oa_66 rdf:type :OfficialAuthority .
+		
+			:w_67 rdf:type :DataSubject .
+			:z_67 :personaldata-of :w_67 .
+			:y_67 :controller-of :z_67 .
+			:x_67 rdf:type :Processor .
+			:edp_67 rdf:type :Rexist .
+			:edp_67 rdf:type :Nominates .
+			:edp_67 :has-time :t1 .
+			:edp_67 :has-agent :y_67 .
+			:edp_67 :has-object :x_67 .
+			:ep_67 rdf:type :Rexist .
+			:ep_67 rdf:type :ProcessPersonalData .
+			:ep_67 :has-time :t1 .
+			:ep_67 :has-agent :x_67 .
+			:ep_67 :has-object :z_67 .
+			:epup_67 rdf:type :Purpose .
+			:ep_67 :is-based-on :epup_67 .
+			:ep_67 :is-related-to :crime_67 .
+			:crime_67 rdf:type :Crime .
+			:estrt1_67 rdf:type :Rexist .
+			:estrt1_67 rdf:type :Store .
+			:estrt1_67 :has-time :t1 .
+			:estrt1_67 :has-agent :x_67 .
+			:estrt1_67 :has-object :z_67 .
+			:estrt1_67 :has-location :pdr_67 .
+			:pdr_67 rdf:type :PersonalDataRecord .
+		
+			:ectrloa_67 rdf:type :Rexist .
+			:ectrloa_67 rdf:type :Control .
+			:ectrloa_67 :has-agent :police_67 .
+			:police_67 rdf:type :OfficialAuthority .
+			:ectrloa_67 :has-object :pdr_67 .
+			:ectrloa_67 :has-time :t1 .
+		
+			:ewdr_73 rdf:type :Rexist .
+			:ewdr_73 rdf:type :Object .
+			:ewdr_73 :has-time :t_instant_inside_t1 .
+			:ewdr_73 :has-agent :w_1 .
+			:ewdr_73 :has-object :ep_1 .
+		
+			:ewdr_75 rdf:type :Rexist .
+			:ewdr_75 rdf:type :Object .
+			:ewdr_75 :has-time :t_instant_inside_t1 .
+			:ewdr_75 :has-agent :w_1 .
+			:ewdr_75 :has-object :ep_1 .
+		

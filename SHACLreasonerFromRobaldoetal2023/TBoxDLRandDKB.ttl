@@ -1,0 +1,294 @@
+PREFIX :     <https://w3id.org/ontology/dlr#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+:includes  rdf:type  rdf:Property;
+        rdfs:domain  time:Interval;
+        rdfs:range   time:Interval .
+
+:EventualityType  rdf:type  rdfs:Class .
+
+:Hold   rdf:type  :EventualityType , rdfs:Class .
+
+:Nominates  rdf:type  :EventualityType , rdfs:Class .
+
+:Modality  rdf:type  rdfs:Class .
+
+:Permitted  rdf:type  :DeonticModality , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?o}\n\t\t\t\t\t\tWHERE{?e :not|^:not ?ne.\n\t\t\t\t\t\t\t  VALUES ?m{:Obligatory :Permitted} VALUES ?om{:Obligatory :Permitted}FILTER(?m!=?om)\n\t\t\t\t\t\t\t  BIND(IF(EXISTS{?e rdf:type ?m},Triple(?ne,rdf:type,?om),IF(EXISTS{<<?e rdf:type ?m>> rdf:type :false},?ne,?s))AS ?s)\n\t\t\t\t\t\t\t  FILTER(BOUND(?s))BIND(IF(isTriple(?s),:false,?om)AS ?o)}"
+] .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?o rdf:type ?c}WHERE{?p rdfs:range ?c. ?s ?p ?o}"
+] .
+
+:has-object-state-with
+        rdf:type     :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:Communicate  rdf:type  :EventualityType , rdfs:Class .
+
+:Demonstrate  rdf:type  :EventualityType , rdfs:Class .
+
+:ThematicRole  rdf:type  rdfs:Class .
+
+:has-object-state  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:true   rdf:type         rdfs:Class;
+        rdfs:subClassOf  rdf:Statement .
+
+:Park   rdf:type  :EventualityType , rdfs:Class .
+
+:Override  rdf:type  :EventualityType , rdfs:Class .
+
+:pi     rdf:type  :plusInfinity , time:Instant .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?o}\n\t\t\t\t\t\tWHERE{?e :not|^:not ?ne. \n\t\t\t\t\t\t\t  BIND(IF(EXISTS{?e rdf:type :Rexist},Triple(?ne,rdf:type,:Rexist), IF(EXISTS{<<?e rdf:type :Rexist>> rdf:type :false},?ne,?s))AS ?s)\n\t\t\t\t\t\t\t  FILTER(BOUND(?s))BIND(IF(isTriple(?s), :false, :Rexist) AS ?o)}"
+] .
+
+:has-aim  rdf:type   :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:defeats-on-89-1  rdfs:subPropertyOf  :defeats .
+
+:defeats-on-21-1-NW  rdfs:subPropertyOf
+                :defeats .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?t2 rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd ?t1b}WHERE{?ep rdf:type :ProcessPersonalData. ?ep :has-time ?t1. ?t1 time:hasBeginning ?t1b. BIND(BNode() AS ?t2) NOT EXISTS{?t2r rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd ?t1b}}"
+] .
+
+:InferenceRule  rdf:type  rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I :includes ?be}WHERE{?I (time:hasBeginning|time:hasEnd) ?be}"
+] .
+
+:TakeIntoAccount  rdf:type  :EventualityType , rdfs:Class .
+
+:has-object-state-to  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:has-object-state-as  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:has-recipient  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:Control  rdf:type  :EventualityType , rdfs:Class .
+
+:DeleteOrRectify  rdf:type  :EventualityType , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I :includes ?sI}\n\t\t\t\t\t\tWHERE{{?I time:hasBeginning/rdf:type :minusInfinity}UNION\n\t\t\t\t\t\t\t  {?I time:hasBeginning*/time:inXSDDateTime ?bI. ?sI time:hasBeginning*/time:inXSDDateTime ?bsI. FILTER(?bI<=?bsI)}\n\t\t\t\t\t\t\t  {?I time:hasEnd/rdf:type :plusInfinity}UNION\n\t\t\t\t\t\t\t  {?I time:hasEnd*/time:inXSDDateTime ?eI. ?sI time:hasEnd*/time:inXSDDateTime ?esI. FILTER(?esI<=?eI)}}"
+] .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?o rdf:type ?c}WHERE{?p rdfs:range ?c. ?s ?p ?o}"
+] .
+
+:M-Permitted  rdf:type   rdfs:Class;
+        rdfs:subClassOf  :Permitted .
+
+:defeats-on-21-1  rdfs:subPropertyOf  :defeats .
+
+:Envisage  rdf:type  :EventualityType , rdfs:Class .
+
+:Object  rdf:type  :EventualityType , rdfs:Class .
+
+:Safeguard  rdf:type  :EventualityType , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I :includes ?I}WHERE{?I rdf:type time:Interval}"
+] .
+
+:intersects  rdf:type  rdf:Property;
+        rdfs:domain  time:Interval;
+        rdfs:range   time:Interval .
+
+:checks-exception-in-21-1-NW
+        rdfs:subPropertyOf  :checks-exception .
+
+:Keep   rdf:type  :EventualityType , rdfs:Class .
+
+:has-instrument  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:checks-exception-in-89-1
+        rdfs:subPropertyOf  :checks-exception .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?c}WHERE{?sc rdfs:subClassOf+ ?c. ?s rdf:type ?sc}"
+] .
+
+:reasonableDelayDuration
+        :has-value  "P1D"^^xsd:duration .
+
+:Pay    rdf:type  :EventualityType , rdfs:Class .
+
+:Submit  rdf:type  :EventualityType , rdfs:Class .
+
+:checks-exception-in-8-1-ms
+        rdfs:subPropertyOf  :checks-exception .
+
+:Specify  rdf:type  :EventualityType , rdfs:Class .
+
+:A-Permitted  rdf:type   rdfs:Class;
+        rdfs:subClassOf  :Permitted .
+
+:checks-exception-in-8-1
+        rdfs:subPropertyOf  :checks-exception .
+
+:Implement  rdf:type  :EventualityType , rdfs:Class .
+
+:ProcessPersonalData  rdf:type  :EventualityType , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?t2 rdf:type time:Interval; time:hasBeginning ?t1e; time:hasEnd ?t2e; :is-without-delay ?t1. ?t2e time:inXSDDateTime ?t2edt}WHERE{?ep rdf:type :ProcessPersonalData. ?ep :has-time ?t1. ?t1 time:hasEnd ?t1e. ?t1e time:inXSDDateTime ?t1edt. :reasonableDelayDuration :has-value ?d. BIND(xsd:dateTime(?t1edt)+?d AS ?t2edt) BIND(BNode() AS ?t2) BIND(BNode() AS ?t2e) NOT EXISTS{?t2r rdf:type time:Interval; time:hasBeginning ?t1e; time:hasEnd ?t2er; :is-without-delay ?t1.}}"
+] .
+
+:Rexist  rdf:type  :Modality , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s ?p ?o}WHERE{?sp rdfs:subPropertyOf ?p. ?s ?sp ?o}"
+] .
+
+:checks-exception-in-9-2
+        rdfs:subPropertyOf  :checks-exception .
+
+:checks-exception-in-21-1
+        rdfs:subPropertyOf  :checks-exception .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?o}\n\t\t\t\t\t\tWHERE{?e :not|^:not ?ne. \n\t\t\t\t\t\t\t  BIND(IF(EXISTS{?e rdf:type :Rexist},Triple(?ne,rdf:type,:Rexist), IF(EXISTS{<<?e rdf:type :Rexist>> rdf:type :false},?ne,?s))AS ?s)\n\t\t\t\t\t\t\t  FILTER(BOUND(?s))BIND(IF(isTriple(?s), :false, :Rexist) AS ?o)}"
+] .
+
+:not    rdf:type     rdf:Property;
+        rdfs:domain  :Eventuality;
+        rdfs:range   :Eventuality .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?o}\n\t\t\t\t\t\tWHERE{?e :not|^:not ?ne.\n\t\t\t\t\t\t\t  VALUES ?m{:Obligatory :Permitted} VALUES ?om{:Obligatory :Permitted}FILTER(?m!=?om)\n\t\t\t\t\t\t\t  BIND(IF(EXISTS{?e rdf:type ?m},Triple(?ne,rdf:type,?om),IF(EXISTS{<<?e rdf:type ?m>> rdf:type :false},?ne,?s))AS ?s)\n\t\t\t\t\t\t\t  FILTER(BOUND(?s))BIND(IF(isTriple(?s),:false,?om)AS ?o)}"
+] .
+
+:mi     rdf:type  :minusInfinity , time:Instant .
+
+:Identify  rdf:type  :EventualityType , rdfs:Class .
+
+:has-agent-type  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:minusInfinity  rdf:type  rdfs:Class .
+
+:has-agent  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:Give   rdf:type  :EventualityType , rdfs:Class .
+
+:Ascertain  rdf:type  :EventualityType , rdfs:Class .
+
+:defeats  rdf:type  rdf:Property .
+
+:Authorize  rdf:type  :EventualityType , rdfs:Class .
+
+:DeonticModality  rdf:type  rdfs:Class;
+        rdfs:subClassOf  :Modality .
+
+:A-Obligatory  rdf:type  rdfs:Class;
+        rdfs:subClassOf  :Obligatory .
+
+:has-time  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality;
+        rdfs:range   time:Interval .
+
+:MakeControlledOrAuthorized
+        rdf:type  :EventualityType , rdfs:Class .
+
+:checks-exception-in-9-2-a
+        rdfs:subPropertyOf  :checks-exception .
+
+:false  rdf:type         rdfs:Class;
+        rdfs:subClassOf  rdf:Statement .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?c}WHERE{?sc rdfs:subClassOf+ ?c. ?s rdf:type ?sc}"
+] .
+
+:Store  rdf:type  :EventualityType , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?c}WHERE{?p rdfs:domain ?c. ?s ?p ?o}"
+] .
+
+:has-location  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:Obligatory  rdf:type  :EventualityType , :DeonticModality , rdfs:Class .
+
+:defeats-on-8-1-ms  rdfs:subPropertyOf  :defeats .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s ?p ?o}WHERE{?sp rdfs:subPropertyOf ?p. ?s ?sp ?o}"
+] .
+
+:defeats-on-8-1  rdfs:subPropertyOf  :defeats .
+
+:Withdraw  rdf:type  :EventualityType , rdfs:Class .
+
+:defeats-on-9-2-a  rdfs:subPropertyOf  :defeats .
+
+:Enter  rdf:type  :EventualityType , rdfs:Class .
+
+:Request  rdf:type  :EventualityType , rdfs:Class .
+
+:checks-exception  rdf:type  rdf:Property .
+
+:defeats-on-9-2  rdfs:subPropertyOf  :defeats .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?s rdf:type ?c}WHERE{?p rdfs:domain ?c. ?s ?p ?o}"
+] .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I1 :intersects ?I2. ?I2 :intersects ?I1}\n\t\t\t\t\t\tWHERE{{?I1 :includes ?I2}UNION{?I1 :includes ?i. ?I2 time:hasBeginning|time:hasEnd ?i}}"
+] .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I :includes ?be}WHERE{?I (time:hasBeginning|time:hasEnd) ?be}"
+] .
+
+:has-object  rdf:type  :ThematicRole , rdf:Property;
+        rdfs:domain  :Eventuality .
+
+:Eventuality  rdf:type  rdfs:Class .
+
+:plusInfinity  rdf:type  rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I :includes ?I}WHERE{?I rdf:type time:Interval}"
+] .
+
+:BeNecessaryFor  rdf:type  :EventualityType , rdfs:Class .
+
+:CollectPersonalData  rdf:type  :EventualityType , rdfs:Class .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I :includes ?sI}\n\t\t\t\t\t\tWHERE{{?I time:hasBeginning/rdf:type :minusInfinity}UNION\n\t\t\t\t\t\t\t  {?I time:hasBeginning*/time:inXSDDateTime ?bI. ?sI time:hasBeginning*/time:inXSDDateTime ?bsI. FILTER(?bI<=?bsI)}\n\t\t\t\t\t\t\t  {?I time:hasEnd/rdf:type :plusInfinity}UNION\n\t\t\t\t\t\t\t  {?I time:hasEnd*/time:inXSDDateTime ?eI. ?sI time:hasEnd*/time:inXSDDateTime ?esI. FILTER(?esI<=?eI)}}"
+] .
+
+:has-sparql-code  rdf:type  rdf:Property;
+        rdfs:domain  :InferenceRule;
+        rdfs:range   xsd:string .
+
+:M-Obligatory  rdf:type  rdfs:Class;
+        rdfs:subClassOf  :Obligatory .
+
+[ rdf:type          :InferenceRule;
+  :has-sparql-code  "CONSTRUCT{?I1 :intersects ?I2. ?I2 :intersects ?I1}\n\t\t\t\t\t\tWHERE{{?I1 :includes ?I2}UNION{?I1 :includes ?i. ?I2 time:hasBeginning|time:hasEnd ?i}}"
+] .
