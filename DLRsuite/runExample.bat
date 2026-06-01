@@ -1,1 +1,0 @@
-java -cp .;.\lib\* -Dfile.encoding=UTF-8 RunExample ./Examples/Example1.rdf
