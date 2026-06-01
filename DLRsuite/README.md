@@ -18,7 +18,7 @@
       </li>
       <br>
       <li>
-        <code>DLRreasoner</code> contains the Java source code of the DLR reasoner, which is used by (almost) all other components to execute DLR 
+        <code>DLRreasoner</code> contains the Java source code of the DLR reasoner, which is used by all other components to execute DLR 
         rules.
       </li>
       <br>
