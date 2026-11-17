@@ -82,7 +82,5 @@
 :defeats-on-9-2-a rdfs:subPropertyOf :defeats.
 
 #TBox rules
-[rdf:type :InferenceRule; :has-sparql-code "CONSTRUCT{?t2 rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd ?t1b}WHERE{?ep rdf:type :ProcessPersonalData. ?ep :has-time ?t1. ?t1 time:hasBeginning ?t1b. BIND(BNode() AS ?t2) NOT EXISTS{?t2r rdf:type time:Interval; time:hasBeginning :mi; time:hasEnd ?t1b}}"^^xsd:string].
-
 [rdf:type :InferenceRule; :has-sparql-code "CONSTRUCT{?t2 rdf:type time:Interval; time:hasBeginning ?t1e; time:hasEnd ?t2e; :is-without-delay ?t1. ?t2e time:inXSDDateTime ?t2edt}WHERE{?ep rdf:type :ProcessPersonalData. ?ep :has-time ?t1. ?t1 time:hasEnd ?t1e. ?t1e time:inXSDDateTime ?t1edt. :reasonableDelayDuration :has-value ?d. BIND(xsd:dateTime(?t1edt)+?d AS ?t2edt) BIND(BNode() AS ?t2) BIND(BNode() AS ?t2e) NOT EXISTS{?t2r rdf:type time:Interval; time:hasBeginning ?t1e; time:hasEnd ?t2er; :is-without-delay ?t1.}}"^^xsd:string].
 
