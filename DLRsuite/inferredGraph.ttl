@@ -1,0 +1,236 @@
+PREFIX :     <https://w3id.org/ontology/dlr#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements6Formula1";
+  :has-object                  :ep_65;
+  :has-object-state            :secure;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements4Formula1";
+  :has-object                  :z_65;
+  :has-object-state            :accurate;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements4Formula1";
+  :has-object                  :z_65;
+  :has-object-state            :up-to-date;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements3Formula1";
+  :has-object                  :z_65;
+  :has-object-state            :adequate;
+  :has-object-state-with       :epup_65;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements3Formula1";
+  :has-object                  :z_65;
+  :has-object-state            :relevant;
+  :has-object-state-to         :epup_65;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements3Formula1";
+  :has-object                  :z_65;
+  :has-object-state            :limited;
+  :has-object-state-to         :epup_65;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements1Formula1";
+  :has-object                  :ep_65;
+  :has-object-state            :lawful;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements1Formula1";
+  :has-object                  :ep_65;
+  :has-object-state            :fair;
+  :has-time                    :t1
+] .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :Keep;
+  :has-agent                   :x_65;
+  :has-generating-dkb-rule-id  "statements1Formula1";
+  :has-object                  :ep_65;
+  :has-object-state            :transparent;
+  :has-time                    :t1
+] .
+
+_:b0    rdf:type           time:Interval;
+        time:hasBeginning  :t1e;
+        time:hasEnd        _:b1;
+        :includes          :t_including_t1e , :t_10minutes_after_t1;
+        :intersects        :t_10minutes_after_t1 , :t_including_t1e , :t_after_t1 , :t_including_t_after_t1 , :t_including_t1 , :t1;
+        :is-without-delay  :t1 .
+
+_:b1    rdf:type            time:Interval;
+        time:inXSDDateTime  "2026-01-02T18:00:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t_after_t1 , :t_after_t1 .
+
+[ rdf:type                     :Active , :Obligatory , :Eventuality , :M-Obligatory , :CarryOutUnderSupervisionOrAuthorization;
+  :has-agent                   :y_65;
+  :has-generating-dkb-rule-id  "statements29Formula1";
+  :has-object                  :ep_65;
+  :has-time                    :t1
+] .
+
+:t1     rdf:type           time:Interval;
+        time:hasBeginning  :t1b;
+        time:hasEnd        :t1e;
+        :includes          :t_instant_inside_t1;
+        :intersects        :t_after_t1 , _:b0 , :t_anytime_before_t1 , :t_including_t_after_t1 , :t_including_t1 , :t_instant_inside_t1 .
+
+:t1b    rdf:type            time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T17:00:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t1 .
+
+:t1e    rdf:type            time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T18:00:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t_after_t1 , :t_including_t1 .
+
+:t2     rdf:type           time:Interval;
+        time:hasBeginning  :t2b;
+        time:hasEnd        :t2e;
+        :intersects        :t_anytime_before_t1 , :t_anytime_before_t2 , :t_including_t2 .
+
+:t2b    rdf:type            time:Interval , time:Instant;
+        time:inXSDDateTime  "2025-12-31T10:00:00Z"^^xsd:dateTime;
+        :intersects         :t_anytime_before_t1 , :t_including_t2 .
+
+:t2e    rdf:type            time:Interval , time:Instant;
+        time:inXSDDateTime  "2025-12-31T20:00:00Z"^^xsd:dateTime;
+        :intersects         :t_anytime_before_t1 , :t_including_t2 .
+
+:t_anytime_before_t1  rdf:type  time:Interval;
+        time:hasBeginning  :mi;
+        time:hasEnd        :t1b;
+        :includes          :t_before_t2 , :t_before_t1 , :t_including_t2e , :t_including_t2b , :t_including_t2 , :t_including_t1b , :t_anytime_before_t2 , :t2e , :t2b , :t2;
+        :intersects        :t_including_t1 , :t_including_t_after_t1 , :t1 , :t2 , :t2b , :t2e , :t_anytime_before_t2 , :t_including_t1b , :t_including_t2 , :t_including_t2b , :t_including_t2e , :t_before_t1 , :t_before_t2 .
+
+:t_anytime_before_t2  rdf:type  time:Interval;
+        time:hasBeginning  :mi;
+        time:hasEnd        :t2b;
+        :includes          :t_before_t2 , :t_including_t2b;
+        :intersects        :t_including_t2 , :t2 , :t_before_t2 , :t_including_t2b , :t_anytime_before_t1 .
+
+:t_including_t1  rdf:type  time:Interval;
+        time:hasBeginning  :t_including_t1b;
+        time:hasEnd        :t_including_t1e;
+        :includes          :t_10minutes_after_t1 , :t_before_t1 , :t_instant_inside_t1 , :t1e , :t1b , :t1;
+        :intersects        :t1 , :t1b , :t1e , :t_instant_inside_t1 , :t_before_t1 , :t_10minutes_after_t1 , :t_after_t1 , _:b0 , :t_including_t_after_t1 , :t_anytime_before_t1 .
+
+:t_including_t1b  rdf:type  time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T16:00:00Z"^^xsd:dateTime;
+        :includes           :t_before_t1;
+        :intersects         :t_before_t1 , :t_anytime_before_t1 .
+
+:t_including_t1e  rdf:type  time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T19:00:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t_after_t1 , :t_after_t1 , _:b0 .
+
+:t_including_t2  rdf:type  time:Interval;
+        time:hasBeginning  :t_including_t2b;
+        time:hasEnd        :t_including_t2e;
+        :includes          :t_before_t2 , :t2e , :t2b , :t2;
+        :intersects        :t_anytime_before_t1 , :t_anytime_before_t2 , :t2 , :t2b , :t2e , :t_before_t2 .
+
+:t_including_t2b  rdf:type  time:Interval , time:Instant;
+        time:inXSDDateTime  "2025-11-01T16:00:00Z"^^xsd:dateTime;
+        :intersects         :t_anytime_before_t2 , :t_anytime_before_t1 .
+
+:t_including_t2e  rdf:type  time:Interval , time:Instant;
+        time:inXSDDateTime  "2025-12-31T21:00:00Z"^^xsd:dateTime;
+        :intersects         :t_anytime_before_t1 .
+
+:t_instant_inside_t1  rdf:type  time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T17:30:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t1 , :t_including_t_after_t1 , :t1 .
+
+:t_before_t1  rdf:type      time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T16:00:00Z"^^xsd:dateTime;
+        :includes           :t_including_t1b;
+        :intersects         :t_including_t1 , :t_including_t1b , :t_anytime_before_t1 .
+
+:t_before_t2  rdf:type      time:Interval , time:Instant;
+        time:inXSDDateTime  "2025-12-30T16:00:00Z"^^xsd:dateTime;
+        :intersects         :t_anytime_before_t2 , :t_anytime_before_t1 , :t_including_t2 .
+
+:t_10minutes_after_t1
+        rdf:type            time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-01T18:10:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t1 , :t_including_t_after_t1 , :t_after_t1 , _:b0 .
+
+:t_after_t1  rdf:type      time:Interval;
+        time:hasBeginning  :t1e;
+        time:hasEnd        :t_after_t1e;
+        :includes          _:b0 , _:b1 , :t_10minutes_after_t1 , :t_including_t1e;
+        :intersects        _:b1 , :t_including_t_after_t1 , _:b0 , :t_including_t1 , :t1 , :t_including_t1e , :t_10minutes_after_t1 .
+
+:t_after_t1e  rdf:type      time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-05T18:00:00Z"^^xsd:dateTime;
+        :intersects         :t_including_t_after_t1 .
+
+:t_including_t_after_t1
+        rdf:type           time:Interval;
+        time:hasBeginning  :t1b;
+        time:hasEnd        :t_including_t_after_t1e;
+        :includes          _:b0 , _:b1 , :t_after_t1e , :t_after_t1 , :t_10minutes_after_t1 , :t_instant_inside_t1 , :t_including_t1e , :t1e , :t1;
+        :intersects        _:b1 , :t_after_t1e , :t_after_t1 , :t_10minutes_after_t1 , :t_instant_inside_t1 , :t_including_t1e , :t1e , :t1 , _:b0 , :t_including_t1 , :t_anytime_before_t1 .
+
+:t_including_t_after_t1e
+        rdf:type            time:Interval , time:Instant;
+        time:inXSDDateTime  "2026-01-05T22:00:00Z"^^xsd:dateTime .
+
+:w_65   rdf:type  :DataSubject .
+
+:z_65   :personaldata-of  :w_65 .
+
+:y_65   :controller-of  :z_65 .
+
+:x_65   rdf:type  :Processor .
+
+:edp_65  rdf:type    :Active , :Eventuality , :Rexist , :Nominates;
+        :has-agent   :y_65;
+        :has-object  :x_65;
+        :has-time    :t1 .
+
+:ep_65  rdf:type        :Active , :Eventuality , :Rexist , :ProcessPersonalData;
+        :has-agent      :x_65;
+        :has-object     :z_65;
+        :has-time       :t1;
+        :is-based-on    :epup_65;
+        :is-related-to  :crime_65 .
+
+:epup_65  rdf:type  :Purpose .
+
+:crime_65  rdf:type  :Crime .
+
+:eiscoa_65  rdf:type  :Active , :Eventuality , :Rexist , :MakeControlledOrAuthorized;
+        :has-agent   :y_65;
+        :has-object  :ep_65;
+        :has-time    :t_including_t1 .
+
+:mi     rdf:type  time:Interval .
