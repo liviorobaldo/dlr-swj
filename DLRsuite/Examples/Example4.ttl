@@ -1,59 +1,616 @@
 @prefix : <https://w3id.org/ontology/dlr#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @base <https://w3id.org/ontology/dlr#> .
-
 
 ####################################################################################################################################################################
 # Description:
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# This example includes an interval :i1, which spans from 3.15pm of 1.1.2022 until 3.15pm of 1.1.2025. The following (sub-)intervals are defined:
+# Test cases for the SPARQL rules inferring :intersects and :includes.
 #
-# - :si1, which is the instant 3.15pm of 1.1.2023 => it is inferred that :i1 includes it.
-# - :si2, which spans from 3.15pm of 1.1.2022 until 3.15pm of 1.1.2025 => it is inferred that :i1 includes :si2 and vice versa, as they are identical.
-# - :si3, which spans from 3.15pm of 1.1.2022 until 3.15pm of 1.1.2024 => it is inferred that :i1 includes :si3.
-# - :si4, which spans from 3.15pm of 1.1.2023 until 3.15pm of 1.1.2024 => it is inferred that :i1 includes :si4.
-# - :si5, which spans from 3.15pm of 1.1.2021 until 3.15pm of 1.1.2024 => no interval includes the other; however, :i1 includes the end instant of :si5.
-# - :si6, which spans from 3.15pm of 1.1.2021 until 3.15pm of 1.1.2026 => :i1 does not include :si6, but :si6 includes :i1.
-# - :si7, which spans from 3.15pm of 1.1.2026 until 3.15pm of 1.1.2028 => neither interval includes the other.
+# Each test case consists of a pair of temporal entities (:tpN1, :tpN2), where N identifies the test case.
 #
-# It is also inferred that some intervals from :si1 to :si6 include other intervals in this set; see the inferred file for details.
+# Each test case uses dateTimes from a different year, starting from 2026. This guarantees that temporal entities
+# belonging to different pairs never intersect with or include one another.
 #
-# Furthermore, when an interval includes another interval, it also includes its beginning and ending instants.
+# Expected results are provided as comments immediately after each test case. Readers can double-check these
+# results in the file inferredGraph.ttl, which contains the output of the SPARQL rules.
 #
-# Finally, if an interval includes another interval (or its beginning and/or ending instants), then the two intervals intersect. Therefore, all intervals above 
-# mutually intersect, except for :i1 and :si7.
 ####################################################################################################################################################################
 
 ####################################################################################################################################################################
-# Input facts:
+# 1. Instant / Instant: same instant (2026)
 ####################################################################################################################################################################
 
-:i1 rdf:type time:Interval; time:hasBeginning :bi1; time:hasEnd :ei1.
-	:bi1 time:inXSDDateTime "2022-01-01T15:15:00Z"^^xsd:dateTime.
-	:ei1 time:inXSDDateTime "2025-01-01T15:15:00Z"^^xsd:dateTime.
-:si1 rdf:type time:Interval; time:inXSDDateTime "2023-01-01T15:15:00Z"^^xsd:dateTime.
-:si2 rdf:type time:Interval; time:hasBeginning :bsi2; time:hasEnd :esi2.
-	:bsi2 time:inXSDDateTime "2022-01-01T15:15:00Z"^^xsd:dateTime.
-	:esi2 time:inXSDDateTime "2025-01-01T15:15:00Z"^^xsd:dateTime.
-:si3 rdf:type time:Interval; time:hasBeginning :bsi3; time:hasEnd :esi3.
-	:bsi3 time:inXSDDateTime "2022-01-01T15:15:00Z"^^xsd:dateTime.
-	:esi3 time:inXSDDateTime "2024-01-01T15:15:00Z"^^xsd:dateTime.
-:si4 rdf:type time:Interval; time:hasBeginning :bsi4; time:hasEnd :esi4.
-	:bsi4 time:inXSDDateTime "2023-01-01T15:15:00Z"^^xsd:dateTime.
-	:esi4 time:inXSDDateTime "2024-01-01T15:15:00Z"^^xsd:dateTime.
-:si5 rdf:type time:Interval; time:hasBeginning :bsi5; time:hasEnd :esi5.
-	:bsi5 time:inXSDDateTime "2021-01-01T15:15:00Z"^^xsd:dateTime.
-	:esi5 time:inXSDDateTime "2024-01-01T15:15:00Z"^^xsd:dateTime.
-:si6 rdf:type time:Interval; time:hasBeginning :bsi6; time:hasEnd :esi6.
-	:bsi6 time:inXSDDateTime "2021-01-01T15:15:00Z"^^xsd:dateTime.
-	:esi6 time:inXSDDateTime "2026-01-01T15:15:00Z"^^xsd:dateTime.
-:si7 rdf:type time:Interval; time:hasBeginning :bsi7; time:hasEnd :esi7.
-	:bsi7 time:inXSDDateTime "2026-01-01T15:15:00Z"^^xsd:dateTime.
-	:esi7 time:inXSDDateTime "2028-01-01T15:15:00Z"^^xsd:dateTime.
+:tp11 a time:Instant ; time:inXSDDateTime "2026-01-01T15:15:00Z"^^xsd:dateTime .
+:tp12 a time:Instant ; time:inXSDDateTime "2026-01-01T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# :tp11 :intersects :tp12 .
+# :tp12 :intersects :tp11 .
+# :tp11 :includes :tp12 .
+# :tp12 :includes :tp11 .
 
 
+####################################################################################################################################################################
+# 2. Instant / Instant: different instants (2025)
+####################################################################################################################################################################
 
+:tp21 a time:Instant ; time:inXSDDateTime "2025-01-01T15:15:00Z"^^xsd:dateTime .
+:tp22 a time:Instant ; time:inXSDDateTime "2025-01-02T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# No :intersects or :includes triple between :tp21 and :tp22, in either direction.
+
+
+####################################################################################################################################################################
+# 3. Degenerate Interval / Instant: Instant before Interval (2024)
+# N.B. A degenerate Interval is one whose beginning and end coincide; therefore, it is effectively an Instant.
+####################################################################################################################################################################
+
+:tp31 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2024-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2024-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp32 a time:Instant ; time:inXSDDateTime "2024-01-09T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# No :intersects or :includes triple between :tp31 and :tp32, in either direction.
+
+
+####################################################################################################################################################################
+# 4. Degenerate Interval / Instant: same instant (2023)
+####################################################################################################################################################################
+
+:tp41 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2023-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2023-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp42 a time:Instant ; time:inXSDDateTime "2023-01-10T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# :tp41 :intersects :tp42 .
+# :tp42 :intersects :tp41 .
+# :tp41 :includes :tp42 .
+# :tp42 :includes :tp41 .
+
+
+####################################################################################################################################################################
+# 5. Degenerate Interval / Instant: instant after Interval (2022)
+####################################################################################################################################################################
+
+:tp51 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2022-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2022-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp52 a time:Instant ; time:inXSDDateTime "2022-01-11T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# No :intersects or :includes triple between :tp51 and :tp52, in either direction.
+
+
+####################################################################################################################################################################
+# 6. Degenerate Interval / Degenerate Interval: before (2021)
+####################################################################################################################################################################
+
+:tp61 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2021-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2021-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp62 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2021-01-09T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2021-01-09T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp61 and :tp62, in either direction.
+
+
+####################################################################################################################################################################
+# 7. Degenerate Interval / Degenerate Interval: equal (2020)
+####################################################################################################################################################################
+
+:tp71 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2020-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2020-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp72 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2020-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2020-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp71 :intersects :tp72 .
+# :tp72 :intersects :tp71 .
+# :tp71 :includes :tp72 .
+# :tp72 :includes :tp71 .
+
+
+####################################################################################################################################################################
+# 8. Degenerate Interval / Degenerate Interval: after (2019)
+####################################################################################################################################################################
+
+:tp81 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2019-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2019-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp82 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2019-01-11T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2019-01-11T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp81 and :tp82, in either direction.
+
+
+####################################################################################################################################################################
+# 9. Degenerate Interval / Proper Interval: before (2018)
+####################################################################################################################################################################
+
+:tp91 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2018-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2018-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp92 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2018-01-11T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2018-01-13T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp91 and :tp92, in either direction.
+
+
+####################################################################################################################################################################
+# 10. Degenerate Interval / Proper Interval: meets beginning (2017)
+####################################################################################################################################################################
+
+:tp101 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2017-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2017-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp102 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2017-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2017-01-13T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp101 :intersects :tp102 .
+# :tp102 :intersects :tp101 .
+# :tp102 :includes :tp101 .
+
+
+####################################################################################################################################################################
+# 11. Degenerate Interval / Proper Interval: inside (2016)
+####################################################################################################################################################################
+
+:tp111 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2016-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2016-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp112 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2016-01-09T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2016-01-11T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp111 :intersects :tp112 .
+# :tp112 :intersects :tp111 .
+# :tp112 :includes :tp111 .
+
+
+####################################################################################################################################################################
+# 12. Degenerate Interval / Proper Interval: meets end (2015)
+####################################################################################################################################################################
+
+:tp121 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2015-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2015-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp122 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2015-01-08T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2015-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp121 :intersects :tp122 .
+# :tp122 :intersects :tp121 .
+# :tp122 :includes :tp121 .
+
+
+####################################################################################################################################################################
+# 13. Degenerate Interval / Proper Interval: after (2014)
+####################################################################################################################################################################
+
+:tp131 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2014-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2014-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+:tp132 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2014-01-07T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2014-01-09T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp131 and :tp132, in either direction.
+
+
+####################################################################################################################################################################
+# 14. Proper Interval / Instant: instant before (2013)
+####################################################################################################################################################################
+
+:tp141 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2013-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2013-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp142 a time:Instant ; time:inXSDDateTime "2013-01-09T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# No :intersects or :includes triple between :tp141 and :tp142, in either direction.
+
+
+####################################################################################################################################################################
+# 15. Proper Interval / Instant: instant at end (2012)
+####################################################################################################################################################################
+
+:tp151 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2012-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2012-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp152 a time:Instant ; time:inXSDDateTime "2012-01-20T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# :tp151 :intersects :tp152 .
+# :tp152 :intersects :tp151 .
+# :tp151 :includes :tp152 .
+
+
+####################################################################################################################################################################
+# 16. Proper Interval / Instant: instant inside (2011)
+####################################################################################################################################################################
+
+:tp161 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2011-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2011-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp162 a time:Instant ; time:inXSDDateTime "2011-01-15T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# :tp161 :intersects :tp162 .
+# :tp162 :intersects :tp161 .
+# :tp161 :includes :tp162 .
+
+
+####################################################################################################################################################################
+# 17. Proper Interval / Instant: instant at beginning (2010)
+####################################################################################################################################################################
+
+:tp171 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2010-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2010-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp172 a time:Instant ; time:inXSDDateTime "2010-01-10T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# :tp171 :intersects :tp172 .
+# :tp172 :intersects :tp171 .
+# :tp171 :includes :tp172 .
+
+
+####################################################################################################################################################################
+# 18. Proper Interval / Instant: instant after (2009)
+####################################################################################################################################################################
+
+:tp181 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2009-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2009-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp182 a time:Instant ; time:inXSDDateTime "2009-01-21T15:15:00Z"^^xsd:dateTime .
+
+# Expected:
+# No :intersects or :includes triple between :tp181 and :tp182, in either direction.
+
+
+####################################################################################################################################################################
+# 19. Proper Interval / Degenerate Interval: degenerate Interval before (2008)
+####################################################################################################################################################################
+
+:tp191 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2008-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2008-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp192 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2008-01-09T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2008-01-09T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp191 and :tp192, in either direction.
+
+
+####################################################################################################################################################################
+# 20. Proper Interval / Degenerate Interval: degenerate Interval at end (2007)
+####################################################################################################################################################################
+
+:tp201 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2007-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2007-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp202 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2007-01-20T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2007-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp201 :intersects :tp202 .
+# :tp202 :intersects :tp201 .
+# :tp201 :includes :tp202 .
+
+
+####################################################################################################################################################################
+# 21. Proper Interval / Degenerate Interval: degenerate Interval inside (2006)
+####################################################################################################################################################################
+
+:tp211 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2006-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2006-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp212 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2006-01-15T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2006-01-15T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp211 :intersects :tp212 .
+# :tp212 :intersects :tp211 .
+# :tp211 :includes :tp212 .
+
+
+####################################################################################################################################################################
+# 22. Proper Interval / Degenerate Interval: degenerate Interval at beginning (2005)
+####################################################################################################################################################################
+
+:tp221 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2005-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2005-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp222 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2005-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2005-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp221 :intersects :tp222 .
+# :tp222 :intersects :tp221 .
+# :tp221 :includes :tp222 .
+
+
+####################################################################################################################################################################
+# 23. Proper Interval / Degenerate Interval: degenerate Interval after (2004)
+####################################################################################################################################################################
+
+:tp231 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2004-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2004-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp232 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2004-01-21T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2004-01-21T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp231 and :tp232, in either direction.
+
+
+####################################################################################################################################################################
+# 24. Proper Interval / Proper Interval: Before (2003)
+####################################################################################################################################################################
+
+:tp241 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2003-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2003-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp242 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2003-01-21T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2003-01-23T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp241 and :tp242, in either direction.
+
+
+####################################################################################################################################################################
+# 25. Proper Interval / Proper Interval: Meets (2002)
+####################################################################################################################################################################
+
+:tp251 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2002-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2002-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp252 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2002-01-20T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2002-01-23T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp251 :intersects :tp252 .
+# :tp252 :intersects :tp251 .
+
+
+####################################################################################################################################################################
+# 26. Proper Interval / Proper Interval: Overlaps (2001)
+####################################################################################################################################################################
+
+:tp261 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2001-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2001-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp262 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2001-01-15T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2001-01-23T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp261 :intersects :tp262 .
+# :tp262 :intersects :tp261 .
+
+
+####################################################################################################################################################################
+# 27. Proper Interval / Proper Interval: Starts (2000)
+####################################################################################################################################################################
+
+:tp271 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2000-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2000-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp272 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "2000-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "2000-01-23T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp271 :intersects :tp272 .
+# :tp272 :intersects :tp271 .
+# :tp272 :includes :tp271 .
+
+
+####################################################################################################################################################################
+# 28. Proper Interval / Proper Interval: During (1999)
+####################################################################################################################################################################
+
+:tp281 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1999-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1999-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp282 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1999-01-08T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1999-01-22T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp281 :intersects :tp282 .
+# :tp282 :intersects :tp281 .
+# :tp282 :includes :tp281 .
+
+
+####################################################################################################################################################################
+# 29. Proper Interval / Proper Interval: Finishes (1998)
+####################################################################################################################################################################
+
+:tp291 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1998-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1998-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp292 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1998-01-08T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1998-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp291 :intersects :tp292 .
+# :tp292 :intersects :tp291 .
+# :tp292 :includes :tp291 .
+
+
+####################################################################################################################################################################
+# 30. Proper Interval / Proper Interval: Equals (1997)
+####################################################################################################################################################################
+
+:tp301 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1997-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1997-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp302 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1997-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1997-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp301 :intersects :tp302 .
+# :tp302 :intersects :tp301 .
+# :tp301 :includes :tp302 .
+# :tp302 :includes :tp301 .
+
+
+####################################################################################################################################################################
+# 31. Proper Interval / Proper Interval: FinishedBy (1996)
+####################################################################################################################################################################
+
+:tp311 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1996-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1996-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp312 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1996-01-12T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1996-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp311 :intersects :tp312 .
+# :tp312 :intersects :tp311 .
+# :tp311 :includes :tp312 .
+
+
+####################################################################################################################################################################
+# 32. Proper Interval / Proper Interval: Contains (1995)
+####################################################################################################################################################################
+
+:tp321 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1995-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1995-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp322 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1995-01-12T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1995-01-18T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp321 :intersects :tp322 .
+# :tp322 :intersects :tp321 .
+# :tp321 :includes :tp322 .
+
+
+####################################################################################################################################################################
+# 33. Proper Interval / Proper Interval: StartedBy (1994)
+####################################################################################################################################################################
+
+:tp331 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1994-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1994-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp332 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1994-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1994-01-18T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp331 :intersects :tp332 .
+# :tp332 :intersects :tp331 .
+# :tp331 :includes :tp332 .
+
+
+####################################################################################################################################################################
+# 34. Proper Interval / Proper Interval: OverlappedBy (1993)
+####################################################################################################################################################################
+
+:tp341 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1993-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1993-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp342 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1993-01-08T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1993-01-15T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp341 :intersects :tp342 .
+# :tp342 :intersects :tp341 .
+
+
+####################################################################################################################################################################
+# 35. Proper Interval / Proper Interval: MetBy (1992)
+####################################################################################################################################################################
+
+:tp351 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1992-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1992-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp352 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1992-01-07T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1992-01-10T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# :tp351 :intersects :tp352 .
+# :tp352 :intersects :tp351 .
+
+
+####################################################################################################################################################################
+# 36. Proper Interval / Proper Interval: After (1991)
+####################################################################################################################################################################
+
+:tp361 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1991-01-10T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1991-01-20T15:15:00Z"^^xsd:dateTime ] .
+
+:tp362 a time:Interval ;
+    time:hasBeginning [ time:inXSDDateTime "1991-01-07T15:15:00Z"^^xsd:dateTime ] ;
+    time:hasEnd [ time:inXSDDateTime "1991-01-09T15:15:00Z"^^xsd:dateTime ] .
+
+# Expected:
+# No :intersects or :includes triple between :tp361 and :tp362, in either direction.
