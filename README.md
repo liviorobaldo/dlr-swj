@@ -22,8 +22,8 @@
       </li>
       <br>
       <li>
-        <code>runVerifyInferencesExample4.bat</code> specifically verifies the output of Example4.ttl. This example tests the rules to infer the relations
-        <code>includes</code> and <code>intersects</code> between pairs of temporal entities against all possible inputs. As in all other examples, the
+        <code>runVerifyInferencesExample4.bat</code> specifically verifies the output of <code>Example4.ttl</code>. This example tests the rules to infer the 
+        relations <code>includes</code> and <code>intersects</code> between pairs of temporal entities against all possible inputs. As in all other examples, the
         inferred triples are stored in <code>DLRsuite\inferredGraph.ttl</code>, where readers can check that the expected triples are indeed generated
         for each possible input. However, since there are many possible inputs, manual verification could be very time-consuming.
         <code>runVerifyInferencesExample4.bat</code> therefore runs a small Java script that automates this verification for all possible inputs.
