@@ -22,6 +22,14 @@
       </li>
       <br>
       <li>
+        <code>runVerifyInferencesExample4.bat</code> specifically verifies the output of Example4.ttl. This example tests the rules to infer the relations
+        <code>includes</code> and <code>intersects</code> between pairs of temporal entities against all possible inputs. As in all other examples, the
+        inferred triples are stored in <code>DLRsuite\inferredGraph.ttl</code>, where readers can check that the expected triples are indeed generated
+        for each possible input. However, since there are many possible inputs, manual verification could be very time-consuming.
+        <code>runVerifyInferencesExample4.bat</code> therefore runs a small Java script that automates this verification for all possible inputs.
+      </li>
+      <br>
+      <li>
         <code>runDRLrulesBuilder.bat</code> takes as input the compact representation of the DLR rules corresponding to the encoded formulae from the DAPRECO knowledge base (see
         <a href="https://link.springer.com/article/10.1007/s10849-019-09309-z">[Robaldo et al., 2020]</a>) and generates the full versions of the rules to be processed by the DLR reasoner, as well as their counterparts adapted for the SHACL-based reasoner from
         <a href="https://link.springer.com/article/10.1007/s10506-023-09360-z">[Robaldo et al., 2023]</a>.
