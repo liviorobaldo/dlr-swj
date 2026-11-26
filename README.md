@@ -1,10 +1,11 @@
 <div align="justify">
-  <p>
-    This GitHub repository contains the Java source code accompanying the paper
-    "Deontic Logic Reified: a deontic logic for the Semantic Web". The logic and all examples shown in the paper
-    are implemented in RDF and SPARQL, and make use of the
-    <a href="https://jena.apache.org/">Apache Jena</a> libraries for execution.
-  </p>
+<p>
+  This GitHub repository contains the Java source code accompanying the paper
+  "Deontic Logic Reified: A Deontic Logic for the Semantic Web". The logic and all the examples presented in the paper
+  are implemented in RDF and SPARQL and rely on the
+  <a href="https://jena.apache.org/">Apache Jena</a> libraries for execution. The code has been tested specifically
+  with Apache Jena 5.6.0 and Java SE Development Kit 27.0.1.1.
+</p>
 
   <p>
     There are two main subfolders: <code>DLRsuite</code> and <code>SHACLreasonerFromRobaldoetal2023</code>.
